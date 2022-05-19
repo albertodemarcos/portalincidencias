@@ -2,21 +2,14 @@ package es.incidence.ms.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import es.incidence.ms.IntegrationTest;
-import es.incidence.ms.config.Constants;
-import es.incidence.ms.domain.entities.users.User;
-import es.incidence.ms.repository.UserRepository;
-import es.incidence.ms.security.AuthoritiesConstants;
-import es.incidence.ms.service.dto.AdminUserDTO;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,6 +17,14 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.transaction.annotation.Transactional;
+
+import es.incidence.ms.IntegrationTest;
+import es.incidence.ms.config.Constants;
+import es.incidence.ms.domain.entities.users.User;
+//import es.incidence.ms.repository.UserRepository;
+import es.incidence.ms.security.AuthoritiesConstants;
+import es.incidence.ms.service.impl.UserService;
+import es.incidence.ms.utils.dtos.AdminUserDTO;
 
 /**
  * Integration tests for {@link UserService}.
@@ -44,8 +45,8 @@ class UserServiceIT {
 
     private static final String DEFAULT_LANGKEY = "dummy";
 
-    @Autowired
-    private UserRepository userRepository;
+    //@Autowired
+    //private UserRepository userRepository;
 
     @Autowired
     private UserService userService;

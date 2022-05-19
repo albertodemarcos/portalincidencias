@@ -2,15 +2,18 @@ package es.incidence.ms.service.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import es.incidence.ms.domain.entities.users.User;
-import es.incidence.ms.service.dto.AdminUserDTO;
-import es.incidence.ms.service.dto.UserDTO;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import es.incidence.ms.domain.entities.users.User;
+import es.incidence.ms.utils.dtos.AdminUserDTO;
+import es.incidence.ms.utils.dtos.UserDTO;
+import es.incidence.ms.utils.mapper.UserMapper;
 
 /**
  * Unit tests for {@link UserMapper}.

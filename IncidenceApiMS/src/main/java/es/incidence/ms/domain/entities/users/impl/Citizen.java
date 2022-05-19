@@ -10,5 +10,10 @@ import es.incidence.ms.domain.entities.users.User;
 public class Citizen extends User {
 
 	private static final long serialVersionUID = -1444839614842519907L;
+	
+	/**
+	 * Citizen Identification
+	 */
+	
 
 }

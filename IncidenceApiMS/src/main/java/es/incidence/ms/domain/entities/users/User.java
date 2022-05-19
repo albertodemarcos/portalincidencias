@@ -2,6 +2,8 @@ package es.incidence.ms.domain.entities.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.incidence.ms.config.Constants;
+import es.incidence.ms.domain.embebbed.PersonalData;
+import es.incidence.ms.domain.embebbed.PostalData;
 import es.incidence.ms.domain.entities.organizations.impl.Organization;
 
 import java.io.Serializable;
@@ -85,6 +87,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(max = 256)
     @Column(name = "type", length = 50, nullable = false)
     private String type;
+    
+    private PersonalData personaldata;
+	private PostalData postalData;
 
     public Long getId() {
         return id;
@@ -173,6 +178,24 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	@Embedded
+	public PersonalData getPersonaldata() {
+		return personaldata;
+	}
+
+	public void setPersonaldata(PersonalData personaldata) {
+		this.personaldata = personaldata;
+	}
+
+	@Embedded
+	public PostalData getPostalData() {
+		return postalData;
+	}
+
+	public void setPostalData(PostalData postalData) {
+		this.postalData = postalData;
 	}
 
 	@Override

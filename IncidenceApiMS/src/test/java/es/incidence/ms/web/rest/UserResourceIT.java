@@ -33,8 +33,8 @@ import es.incidence.ms.domain.entities.users.Authority;
 import es.incidence.ms.domain.entities.users.User;
 import es.incidence.ms.repository.UserRepository;
 import es.incidence.ms.security.AuthoritiesConstants;
-import es.incidence.ms.service.dto.AdminUserDTO;
-import es.incidence.ms.service.mapper.UserMapper;
+import es.incidence.ms.utils.dtos.AdminUserDTO;
+import es.incidence.ms.utils.mapper.UserMapper;
 
 /**
  * Integration tests for the {@link UserResource} REST controller.

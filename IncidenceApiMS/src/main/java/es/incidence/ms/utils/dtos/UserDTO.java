@@ -1,4 +1,4 @@
-package es.incidence.ms.service.dto;
+package es.incidence.ms.utils.dtos;
 
 import es.incidence.ms.domain.entities.users.User;
 

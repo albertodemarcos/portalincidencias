@@ -1,16 +1,13 @@
-package es.incidence.ms.service;
+package es.incidence.ms.service.impl;
 
-import es.incidence.ms.config.Constants;
-import es.incidence.ms.domain.entities.users.Authority;
-import es.incidence.ms.domain.entities.users.User;
-import es.incidence.ms.repository.AuthorityRepository;
-import es.incidence.ms.repository.UserRepository;
-import es.incidence.ms.security.SecurityUtils;
-import es.incidence.ms.service.dto.AdminUserDTO;
-import es.incidence.ms.service.dto.UserDTO;
 import java.time.Instant;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -23,12 +20,22 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.incidence.ms.config.Constants;
+import es.incidence.ms.domain.entities.users.Authority;
+import es.incidence.ms.domain.entities.users.User;
+import es.incidence.ms.repository.AuthorityRepository;
+import es.incidence.ms.repository.UserRepository;
+import es.incidence.ms.security.SecurityUtils;
+import es.incidence.ms.service.IUserService;
+import es.incidence.ms.utils.dtos.AdminUserDTO;
+import es.incidence.ms.utils.dtos.UserDTO;
+
 /**
  * Service class for managing users.
  */
 @Service
 @Transactional
-public class UserService {
+public class UserService implements IUserService {
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 

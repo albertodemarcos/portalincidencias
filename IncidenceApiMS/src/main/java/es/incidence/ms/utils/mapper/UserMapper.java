@@ -1,15 +1,21 @@
-package es.incidence.ms.service.mapper;
+package es.incidence.ms.utils.mapper;
 
-import es.incidence.ms.domain.entities.users.Authority;
-import es.incidence.ms.domain.entities.users.User;
-import es.incidence.ms.service.dto.AdminUserDTO;
-import es.incidence.ms.service.dto.UserDTO;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
+
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.stereotype.Service;
+
+import es.incidence.ms.domain.entities.users.Authority;
+import es.incidence.ms.domain.entities.users.User;
+import es.incidence.ms.utils.dtos.AdminUserDTO;
+import es.incidence.ms.utils.dtos.UserDTO;
 
 /**
  * Mapper for the entity {@link User} and its DTO called {@link UserDTO}.
