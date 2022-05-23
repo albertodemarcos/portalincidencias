@@ -1,32 +1,43 @@
 package es.incidence.ms.config;
 
-import javax.servlet.*;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.server.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.Profiles;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import es.incidence.ms.converter.IncidenceConverter;
+import es.incidence.ms.converter.OrganizationConverter;
 import tech.jhipster.config.JHipsterProperties;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
  */
 @Configuration
-public class WebConfigurer implements ServletContextInitializer {
+public class WebConfigurer implements ServletContextInitializer, WebMvcConfigurer  {
 
-    private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
+	private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
 
     private final Environment env;
 
     private final JHipsterProperties jHipsterProperties;
+    
+    @Autowired
+    private IncidenceConverter incidenceConverter;
+    
+    @Autowired
+    private OrganizationConverter organizationConverter;
 
     public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
         this.env = env;
@@ -55,4 +66,14 @@ public class WebConfigurer implements ServletContextInitializer {
         }
         return new CorsFilter(source);
     }
+    
+    @Override
+   	public void addFormatters(FormatterRegistry registry) {
+   		// TODO Auto-generated method stub
+    	
+    	registry.addConverter(incidenceConverter);
+    	registry.addConverter(organizationConverter);
+    	
+   		WebMvcConfigurer.super.addFormatters(registry);
+   	}
 }

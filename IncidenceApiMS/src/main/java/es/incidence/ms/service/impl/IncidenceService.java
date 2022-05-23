@@ -25,11 +25,20 @@ public class IncidenceService implements IIncidenceService {
 	
 
 	@Override
-	public ActionResponse getIncidence(Long incidenceId) {
+	public ActionResponse getIncidence(Incidence incidence) {
 		// TODO Auto-generated method stub
-		logger.info("Method: IncidenceService.getIncidence(incidenceId={})", incidenceId);
+		logger.info("Method: IncidenceService.getIncidence(incidenceId={})", incidence != null ? incidence.getId() : null);
 		
-		return null;
+		if( incidence == null) {
+			
+			logger.error("Method: IncidenceService.getIncidence(incidenceId={}) has errors", incidence != null ? incidence.getId() : null);
+			
+			return new ActionResponse("1", "", null);
+		}
+		
+		IncidenceDto incidenceDto = this.populateIncidenceDto(incidence);
+		
+		return new ActionResponse("1", "", incidenceDto);
 	}
 
 	@Override
@@ -42,7 +51,6 @@ public class IncidenceService implements IIncidenceService {
 		if( incidenceDto.isNew() ) {
 			
 			incidence = new Incidence();
-			
 			
 		} else {
 			
@@ -115,6 +123,23 @@ public class IncidenceService implements IIncidenceService {
 		logger.info("Method: IncidenceService.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );
 		
 		return null;
+	}
+	
+	private IncidenceDto populateIncidenceDto(Incidence incidence) {
+		IncidenceDto incidenceDto = new IncidenceDto();
+		
+		incidenceDto.setId(incidence.getId());
+		incidenceDto.setTitle(incidence.getTitle());
+		incidenceDto.setDescription(incidence.getDescription());
+		incidenceDto.setStartDate(incidence.getStartDate());
+		incidenceDto.setEndDate(incidence.getEndDate());
+		incidenceDto.setCitizenId(incidence.getCitizen().getId());
+		incidenceDto.setEmployeeId(incidence.getEmployee().getId());
+		incidenceDto.setLatitude( incidence.getLocation() != null ? incidence.getLocation().getLongitude() : null );
+		incidenceDto.setLongitude( incidence.getLocation() != null ? incidence.getLocation().getLatitude() : null );
+		incidenceDto.setTownHallId(incidence.getOrganization().getId());
+		
+		return incidenceDto;
 	}
 
 }

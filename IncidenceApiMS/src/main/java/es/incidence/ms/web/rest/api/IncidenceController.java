@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.incidence.ms.domain.entities.incidences.Incidence;
 import es.incidence.ms.service.impl.IncidenceService;
 import es.incidence.ms.utils.ActionResponse;
 import es.incidence.ms.utils.dtos.IncidenceDto;
@@ -32,10 +33,10 @@ public class IncidenceController {
 	private IncidenceService incidenceService;
 
 	@GetMapping(path = {"/incidence/{incidenceId}"})
-	public ActionResponse getIncidence(@PathVariable Long incidenceId) 
+	public ActionResponse getIncidence(@PathVariable Incidence incidence) 
 	{
-		logger.info("Method: IncidencesController.getIncidence(incidenceId={})", incidenceId);
-		ActionResponse response = this.incidenceService.getIncidence(incidenceId);
+		logger.info("Method: IncidencesController.getIncidence(incidenceId={})", incidence != null ? incidence.getId() : null );
+		ActionResponse response = this.incidenceService.getIncidence(incidence);
 		return response;
 	}
 	
