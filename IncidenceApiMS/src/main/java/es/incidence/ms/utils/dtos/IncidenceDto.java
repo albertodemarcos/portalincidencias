@@ -11,7 +11,7 @@ public class IncidenceDto {
 	private Date endDate;
 	private Long longitude;
 	private Long latitude;
-	private Long townHallId;
+	private Long organizationId;
 	private Long citizenId;
 	private Long employeeId;
 	
@@ -75,12 +75,12 @@ public class IncidenceDto {
 		this.latitude = latitude;
 	}
 
-	public Long getTownHallId() {
-		return townHallId;
+	public Long getOrganizationId() {
+		return organizationId;
 	}
 
-	public void setTownHallId(Long townHallId) {
-		this.townHallId = townHallId;
+	public void setOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
 	}
 
 	public Long getCitizenId() {

@@ -52,7 +52,7 @@ public class IncidenceValidator implements Validator {
 			errors.rejectValue("","INCIDENCE_VALIDATE.ERROR", null, "" );
 		}
 		
-		if( incidenceDto.getTownHallId() == null ) {
+		if( incidenceDto.getOrganizationId() == null ) {
 			errors.rejectValue("","INCIDENCE_VALIDATE.ERROR", null, "" );
 		}
 		

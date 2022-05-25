@@ -9,5 +9,8 @@ import es.incidence.ms.domain.entities.incidences.Incidence;
 public interface IncidenceRepository extends JpaRepository<Incidence, Long>{
 	
 	Optional<Incidence> findByIdAndOrganizationId(Long id, Long organizationId);
+	
+	
+	
 
 }
