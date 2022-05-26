@@ -35,7 +35,8 @@ public class Incidence {
 	private String title;
 	private String description;
 	private Date startDate;
-	private Date endDate;	
+	private Date endDate;
+	private Boolean resolved;
 	private Location location;
 	private Organization organization;
 	private Citizen citizen; //this user create incidence
@@ -87,6 +88,14 @@ public class Incidence {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public Boolean getResolved() {
+		return resolved;
+	}
+
+	public void setResolved(Boolean resolved) {
+		this.resolved = resolved;
 	}
 
 	@Embedded

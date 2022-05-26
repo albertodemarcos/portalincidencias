@@ -1,6 +1,7 @@
 package es.incidence.ms.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import es.incidence.ms.service.IIncidenceService;
 import es.incidence.ms.utils.ActionResponse;
 import es.incidence.ms.utils.dtos.IncidenceDto;
 import es.incidence.ms.utils.filters.impl.IncidenceFilter;
+import es.incidence.ms.utils.querys.impl.QueryResolvedService;
 
 
 @Service
@@ -39,6 +41,9 @@ public class IncidenceService implements IIncidenceService {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private QueryResolvedService queryResolvedService;
 	
 
 	@Override
@@ -140,6 +145,12 @@ public class IncidenceService implements IIncidenceService {
 		// TODO Auto-generated method stub
 		logger.info("Method: IncidenceService.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );
 		
+		//String sqlQuery = null;
+		
+		//queryResolvedService.getJpqlConsulterForLikeExpression(null, null, incidenceFilter, null, null);
+		
+		
+		
 		return null;
 	}
 	
@@ -178,7 +189,7 @@ public class IncidenceService implements IIncidenceService {
 	}
 
 	@Override
-	public ActionResponse getIncidencesCitizen(Long citizenId, Long organizationId) {
+	public ActionResponse getIncidencesCitizen(final Long citizenId, final Long organizationId) {
 		// TODO Auto-generated method stub
 		
 		if( citizenId == null || organizationId == null ) {
@@ -192,8 +203,9 @@ public class IncidenceService implements IIncidenceService {
 		
 		try {
 			
-			//this.incidenceRepository
+			List<Incidence> incidences = this.incidenceRepository.findAllByCitizenIdAndOrganizationIdAndResolvedIsNotTrue(citizenId, organizationId);
 			
+			response = new ActionResponse("1", "", incidences);
 			
 		}catch(Exception e) {
 			
