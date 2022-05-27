@@ -28,15 +28,13 @@ public class QueryResolvedService implements IQueryResolvedService {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public String getJpqlConsulterForLikeExpression(final String sqlQuery, final String sqlCcondition, final Object sqlParam, Map<String, Object> sqlParamsQuery, final Boolean sqlRequired) {
 		// TODO Auto-generated method stub
 		
-		if( sqlParam == null 
-				|| BooleanUtils.isNotTrue(sqlRequired)
-				|| ( (sqlParam instanceof String) && ( StringUtils.isBlank( ((String) sqlParam) ) ) ) 
-				|| ( (sqlParam instanceof Collection) && ((Collection) sqlParam).size() < 1 ) )
+		boolean createSqlQuery = validationSqlParams(sqlParam, sqlRequired);
+		
+		if( createSqlQuery )
 		
 			return sqlQuery;
 		
@@ -61,15 +59,13 @@ public class QueryResolvedService implements IQueryResolvedService {
 		return sqlQueryRemplace;
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public String getJpqlConsulterForNumberExpression(final String sqlQuery, final String sqlCcondition, final Object sqlParam, Map<String, Object> sqlParamsQuery, final Boolean sqlRequired) {
 		// TODO Auto-generated method stub
 
-		if( sqlParam == null 
-				|| BooleanUtils.isNotTrue(sqlRequired)
-				|| ( (sqlParam instanceof String) && ( StringUtils.isBlank( ((String) sqlParam) ) ) ) 
-				|| ( (sqlParam instanceof Collection) && ((Collection) sqlParam).size() < 1 ) )
+		boolean createSqlQuery = validationSqlParams(sqlParam, sqlRequired);
+		
+		if( createSqlQuery )
 		
 			return sqlQuery;
 		
@@ -93,6 +89,7 @@ public class QueryResolvedService implements IQueryResolvedService {
 		
 		return sqlQueryRemplace;
 	}
+
 
 	@Override
 	public Long countJpqlConsulterWithConditionExpression(Query queryCount, Map<String, Object> sqlParamsQuery) {
@@ -160,7 +157,42 @@ public class QueryResolvedService implements IQueryResolvedService {
 	@Override
 	public void getMergerSqlParamsQueryForJpqlConsulter(Query queryCount, Map<String, Object> sqlParamsQuery) {
 		// TODO Auto-generated method stub
+		if( queryCount == null || (sqlParamsQuery == null || sqlParamsQuery.size() == 0) )
 		
+			return;
+		
+		for (String key : sqlParamsQuery.keySet()) 
+		{
+			Object paramQuery = sqlParamsQuery.get(key);
+			queryCount.setParameter(key, paramQuery);
+		}
 	}
 
+	@SuppressWarnings("rawtypes")
+	private boolean validationSqlParams(final Object sqlParam, final Boolean sqlRequired) {
+		
+		if( sqlParam == null || BooleanUtils.isNotTrue(sqlRequired) )
+			
+			return false;
+		
+		boolean paramsIsOk = false;
+		
+		if( sqlParam instanceof String ) {
+			
+			String sqlParamStr = (String) sqlParam;
+			
+			paramsIsOk = StringUtils.isBlank( sqlParamStr );
+			
+			
+		} else if( sqlParam instanceof Collection ) {
+			
+			Collection sqlParamCollection = (Collection) sqlParam;
+			
+			if( sqlParamCollection != null && sqlParamCollection.size() >= 1 )
+				
+				paramsIsOk = true;			
+		}
+		
+		return  paramsIsOk;
+	}
 }

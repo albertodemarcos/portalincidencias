@@ -22,7 +22,6 @@ import es.incidence.ms.service.IIncidenceService;
 import es.incidence.ms.utils.ActionResponse;
 import es.incidence.ms.utils.dtos.IncidenceDto;
 import es.incidence.ms.utils.filters.impl.IncidenceFilter;
-import es.incidence.ms.utils.querys.impl.QueryResolvedService;
 
 
 @Service
@@ -42,8 +41,8 @@ public class IncidenceService implements IIncidenceService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
-	@Autowired
-	private QueryResolvedService queryResolvedService;
+	//@Autowired
+	//private QueryResolvedService queryResolvedService;
 	
 
 	@Override
@@ -145,9 +144,7 @@ public class IncidenceService implements IIncidenceService {
 		// TODO Auto-generated method stub
 		logger.info("Method: IncidenceService.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );
 		
-		//String sqlQuery = null;
 		
-		//queryResolvedService.getJpqlConsulterForLikeExpression(null, null, incidenceFilter, null, null);
 		
 		
 		
