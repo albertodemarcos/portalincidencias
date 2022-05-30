@@ -2,7 +2,10 @@ package es.incidence.ms.utils.querys;
 
 import java.util.Map;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.springframework.data.domain.Pageable;
 
 public interface IQueryResolvedService {
 	
@@ -14,4 +17,5 @@ public interface IQueryResolvedService {
 	
 	void getMergerSqlParamsQueryForJpqlConsulter(Query queryCount, Map<String, Object> sqlParamsQuery);
 	
+	Query getJpqlConsuslterWithSqlStr(String jpql, Pageable page, EntityManager entityManager, Map<String, Object> sqlParamsQuery,  String... otherParams);
 }

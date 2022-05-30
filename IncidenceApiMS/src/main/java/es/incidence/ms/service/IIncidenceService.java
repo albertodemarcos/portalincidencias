@@ -2,6 +2,7 @@ package es.incidence.ms.service;
 
 import java.util.Date;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 
 import es.incidence.ms.domain.entities.incidences.Incidence;
@@ -19,7 +20,7 @@ public interface IIncidenceService {
 		
 	ActionResponse deleteIncidence(final Long incidenceId);
 	
-	ActionResponse getIncidences(final IncidenceFilter incidenceFilter );
+	ActionResponse getIncidences(final Long citizenId, final Long organizationId, final IncidenceFilter incidenceFilter, Pageable page );
 	
 	ActionResponse getResolveIncident(Incidence incidence, final Employee employee, final Date endDate);
 	

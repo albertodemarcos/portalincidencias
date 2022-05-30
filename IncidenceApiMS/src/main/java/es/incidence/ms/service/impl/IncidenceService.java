@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -21,6 +23,7 @@ import es.incidence.ms.repository.OrganizationRepository;
 import es.incidence.ms.service.IIncidenceService;
 import es.incidence.ms.utils.ActionResponse;
 import es.incidence.ms.utils.dtos.IncidenceDto;
+import es.incidence.ms.utils.dtos.IncidenceListDto;
 import es.incidence.ms.utils.filters.impl.IncidenceFilter;
 
 
@@ -140,15 +143,33 @@ public class IncidenceService implements IIncidenceService {
 	}
 
 	@Override
-	public ActionResponse getIncidences(IncidenceFilter incidenceFilter) {
+	public ActionResponse getIncidences(final Long citizenId, final Long organizationId, final IncidenceFilter incidenceFilter, Pageable page) {
 		// TODO Auto-generated method stub
 		logger.info("Method: IncidenceService.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );
 		
+		ActionResponse actionResponse = null;
 		
+		try {
 		
+			Page<IncidenceListDto> incidencesPage = incidenceRepository.getIncidencesByFilter(citizenId, organizationId, incidenceFilter, page);
+			
+			if( incidencesPage == null ) {
+				
+				throw new Exception("No hay datos");
+			}
+			
+			actionResponse = new ActionResponse("1", null, incidencesPage);
+			
+		} catch(Exception e) {
+			
+			logger.error("Se ha producido un error");
+			
+			e.printStackTrace();
+			
+			actionResponse = new ActionResponse("-1", null, null);
+		}
 		
-		
-		return null;
+		return actionResponse;
 	}
 	
 	@Override

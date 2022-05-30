@@ -2,7 +2,7 @@ package es.incidence.ms.utils.dtos;
 
 import java.util.Date;
 
-public class IncidenceDto {
+public class IncidenceListDto {
 
 	private Long id;
 	private String title;
@@ -15,12 +15,23 @@ public class IncidenceDto {
 	private Long citizenId;
 	private Long employeeId;
 	
-	public IncidenceDto() {
+	public IncidenceListDto() {
 		super();
 	}
-
-	public boolean isNew() {
-		return id == null;
+	
+	//IncidenceRepositoryImpl.getIncidencesByFilter
+	public IncidenceListDto(Long id, String title, String description, Date startDate, Date endDate, Long longitude, Long latitude, Long organizationId, Long citizenId, Long employeeId) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.organizationId = organizationId;
+		this.citizenId = citizenId;
+		this.employeeId = employeeId;
 	}
 
 	public Long getId() {

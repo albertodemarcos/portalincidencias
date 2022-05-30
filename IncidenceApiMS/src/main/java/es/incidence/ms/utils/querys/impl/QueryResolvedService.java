@@ -1,10 +1,12 @@
 package es.incidence.ms.utils.querys.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.persistence.EntityManager;
 import javax.persistence.LockTimeoutException;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -18,6 +20,8 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import es.incidence.ms.utils.querys.IQueryResolvedService;
@@ -25,6 +29,8 @@ import es.incidence.ms.utils.querys.IQueryResolvedService;
 
 @Service
 public class QueryResolvedService implements IQueryResolvedService {
+	
+	private final String UNSORTED = "UNSORTED";
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -89,7 +95,6 @@ public class QueryResolvedService implements IQueryResolvedService {
 		
 		return sqlQueryRemplace;
 	}
-
 
 	@Override
 	public Long countJpqlConsulterWithConditionExpression(Query queryCount, Map<String, Object> sqlParamsQuery) {
@@ -183,7 +188,6 @@ public class QueryResolvedService implements IQueryResolvedService {
 			
 			paramsIsOk = StringUtils.isBlank( sqlParamStr );
 			
-			
 		} else if( sqlParam instanceof Collection ) {
 			
 			Collection sqlParamCollection = (Collection) sqlParam;
@@ -195,4 +199,44 @@ public class QueryResolvedService implements IQueryResolvedService {
 		
 		return  paramsIsOk;
 	}
+
+	@Override
+	public Query getJpqlConsuslterWithSqlStr(String queryWithParams, Pageable page, EntityManager entityManager, Map<String, Object> sqlParamsQuery, String... otherParams) {
+		// TODO Auto-generated method stub
+		
+		Query query = null;
+		
+		if( page != null && page.getSort() != null && !UNSORTED.equalsIgnoreCase(page.getSort().toString()) ) 
+		{
+			queryWithParams = queryWithParams.concat("order by ");
+			
+			Iterator<Order> sortPaginator = page.getSort().iterator();
+			
+			while(sortPaginator.hasNext()) 
+			{
+				//Order order = sortPaginator.next();
+				
+				//String property = (!order.getProperty().contains(prefijo)) ? prefijo+order.getProperty() : order.getProperty();
+				
+			}
+			
+			query = entityManager.createQuery(queryWithParams);
+			
+			int offset=((page.getPageNumber())*page.getPageSize());
+			query.setFirstResult(offset);
+			query.setMaxResults(page.getPageSize());
+			
+			this.getMergerSqlParamsQueryForJpqlConsulter(query, sqlParamsQuery);
+			
+			return query; 
+		}
+		
+		query = entityManager.createQuery(queryWithParams);
+		
+		this.getMergerSqlParamsQueryForJpqlConsulter(query, sqlParamsQuery);
+		
+		return query;
+	}
+	
+	
 }
