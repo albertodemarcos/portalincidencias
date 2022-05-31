@@ -1,8 +1,8 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-light-blue-navbar">
   <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
     <span class="logo-img"></span>
-    <span jhiTranslate="global.title" class="navbar-title">IncidenceAppMS</span>
-    <span class="navbar-version">{{ version }}</span>
+    <span jhiTranslate="global.title" class="navbar-title">Portal Incidence</span>
+    <span class="navbar-version" *jhiHasAnyAuthority="'ROLE_ADMIN'">{{ version }}</span>
   </a>
   <a
     class="navbar-toggler d-lg-none"
@@ -26,6 +26,40 @@
           </span>
         </a>
       </li>
+      <!-- INIT APP -->
+      <li
+      *ngSwitchCase="true"
+      ngbDropdown
+      class="nav-item dropdown pointer"
+      display="dynamic"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+          <span>
+            <fa-icon icon="th-list"></fa-icon>
+            <span jhiTranslate="global.menu.incidences.main">Incidences</span>
+          </span>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+          <!-- Map -->
+          <li>
+            <a class="dropdown-item" routerLink="planning/calendar" routerLinkActive="active" (click)="collapseNavbar()">
+              <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.incidences.city-map">City Map</span>
+            </a>
+          </li>
+
+          <!-- List -->
+          <li>
+          <a class="dropdown-item" routerLink="planning/index" routerLinkActive="active" (click)="collapseNavbar()">
+            <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
+            <span jhiTranslate="global.menu.incidences.list">Listado</span>
+          </a>
+          </li>
+          
+        </ul>
+      </li>
+      <!-- END APP -->
       <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
       <li
         *ngSwitchCase="true"

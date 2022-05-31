@@ -199,4 +199,60 @@ ui bootstrap tweaks
   white-space: nowrap;
 }
 
+/* ==========================================================================
+Background-colors
+========================================================================== */
+
+/* ====================  NAVBAR ============================*/
+
+.bg-dark-green-navbar{
+  background-color: green !important;
+}
+
+.bg-light-blue-navbar{
+  background-color: #33C1FF !important;
+}
+
+/* ====================  MAIN CONTAINER ============================*/
+
+.bg-light-gray-main-container{
+  background-color: #F2F2F2 !important;
+}
+
+.bg-light-gray-main-container::before{
+  background-color: #F2F2F2 !important;
+}
+
+/* ====================  INPUT SWITCH ============================*/
+
+.p-inputswitch .p-inputswitch-slider{
+  border-radius: 50px !important;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: #33C1FF !important;
+}
+
+/* ====================  GLOBAL ============================*/
+
+.not-border{
+  border: none !important;
+}
+.panel-azul{
+  .p-panel-header{
+    background: #33C1FF !important;
+    color: #343a40 !important;
+  }
+}
+
+.sin-border {
+  border: none !important;
+  background: #ffffff;
+  color: #212529;
+  padding: 1.25rem;
+  border-radius: none !important;
+}
+
+
+
 /* jhipster-needle-scss-add-main JHipster will add new css style */

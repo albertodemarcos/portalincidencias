@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "IncidenceAppMS",
+    "title": "Portal Incidencias",
     "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=es\">actualice su navegador</a> para mejorar su experiencia.",
     "menu": {
       "home": "Inicio",
@@ -9,6 +9,11 @@
         "main": "Entidades",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
+      "incidences": {
+        "main": "Incidencias",
+        "city-map": "Mapa del municipio",
+        "list": "Listado"
+      },      
       "account": {
         "main": "Cuenta",
         "settings": "Ajustes",
