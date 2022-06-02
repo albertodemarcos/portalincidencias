@@ -1,0 +1,45 @@
+{
+    "incidences": {
+        "title": "Incidence",
+        "form": {
+          "button": "Crear tarea",
+          "title": {
+              "label": "Título",
+              "placeholder": "Ponga un título a la incidencia"
+          },
+          "description": {
+              "label": "Descripción",
+              "placeholder": "Describa la incidencia"
+          },        
+          "reminder": {
+              "label": "Notificar el cierre de la incidencia",
+              "placeholder": "Si marca esta casilla, se enviará una notificación a su correo electrónico"
+          }          
+        },
+        "messages": {
+          "validate": {
+            "title": {
+              "required": "El título de la tarea es obligatorio.",
+              "minlength": "El título de la tarea debe tener al menos 5 caracter.",
+              "maxlength": "El título de la tarea no puede tener más de 50 caracteres.",
+              "pattern": "El título de la tarea no es válido."
+            },
+            "description": {
+              "required": "La descripción es obligatoria.",
+              "minlength": "La descripción debe tener al menos 15 caracter.",
+              "maxlength": "La descripción no puede tener más de 254 caracteres.",
+              "pattern": "La descripción no es válida."
+            },
+            "reminder": {
+              "required": "La notificación es obligatorio.",
+              "pattern": "La notificación no es válido."
+            }            
+          },
+          "success": "<strong>¡Registro guardado!</strong>.",
+          "error": {
+            "fail": "<strong>¡La creación de la incidencia ha fallado!</strong> Por favor, inténtelo de nuevo más tarde."
+          }
+        }
+      }
+
+}

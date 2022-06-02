@@ -1,6 +1,6 @@
 package es.incidenceapp.ms.service.dto;
 
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
 
 /**
  * A DTO representing a user, with only the public attributes.

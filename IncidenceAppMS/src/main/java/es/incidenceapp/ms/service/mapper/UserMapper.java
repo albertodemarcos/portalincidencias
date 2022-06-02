@@ -1,7 +1,7 @@
 package es.incidenceapp.ms.service.mapper;
 
-import es.incidenceapp.ms.domain.Authority;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.Authority;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.service.dto.AdminUserDTO;
 import es.incidenceapp.ms.service.dto.UserDTO;
 import java.util.*;

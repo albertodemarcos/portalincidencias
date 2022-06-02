@@ -37,6 +37,8 @@ local.properties
 .loadpath
 .factorypath
 /src/main/resources/rebel.xml
+.apt_generated/
+.apt_generated_tests/
 
 # External tool builders
 .externalToolBuilders/**

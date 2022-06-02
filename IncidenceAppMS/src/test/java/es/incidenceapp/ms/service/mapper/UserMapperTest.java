@@ -2,7 +2,7 @@ package es.incidenceapp.ms.service.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.service.dto.AdminUserDTO;
 import es.incidenceapp.ms.service.dto.UserDTO;
 import java.util.ArrayList;

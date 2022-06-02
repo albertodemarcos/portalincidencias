@@ -6,7 +6,8 @@ import static org.mockito.Mockito.*;
 
 import es.incidenceapp.ms.IntegrationTest;
 import es.incidenceapp.ms.config.Constants;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;

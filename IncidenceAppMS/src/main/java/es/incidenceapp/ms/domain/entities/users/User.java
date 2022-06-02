@@ -1,7 +1,9 @@
-package es.incidenceapp.ms.domain;
+package es.incidenceapp.ms.domain.entities.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.incidenceapp.ms.config.Constants;
+import es.incidenceapp.ms.domain.entities.organizations.impl.Organization;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -81,6 +83,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date")
     private Instant resetDate = null;
+    
 
     @JsonIgnore
     @ManyToMany
@@ -197,8 +200,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
+    
 
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

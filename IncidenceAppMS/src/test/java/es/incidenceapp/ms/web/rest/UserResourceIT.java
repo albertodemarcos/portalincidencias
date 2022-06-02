@@ -7,8 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import es.incidenceapp.ms.IntegrationTest;
-import es.incidenceapp.ms.domain.Authority;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.Authority;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.repository.UserRepository;
 import es.incidenceapp.ms.security.AuthoritiesConstants;
 import es.incidenceapp.ms.service.dto.AdminUserDTO;

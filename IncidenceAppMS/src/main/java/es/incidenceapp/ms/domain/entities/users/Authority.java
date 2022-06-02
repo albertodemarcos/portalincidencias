@@ -1,4 +1,4 @@
-package es.incidenceapp.ms.domain;
+package es.incidenceapp.ms.domain.entities.users;
 
 import java.io.Serializable;
 import java.util.Objects;

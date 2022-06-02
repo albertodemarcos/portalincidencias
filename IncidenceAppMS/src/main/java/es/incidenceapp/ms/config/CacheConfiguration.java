@@ -81,9 +81,9 @@ public class CacheConfiguration {
         return cm -> {
             createCache(cm, es.incidenceapp.ms.repository.UserRepository.USERS_BY_LOGIN_CACHE, jcacheConfiguration);
             createCache(cm, es.incidenceapp.ms.repository.UserRepository.USERS_BY_EMAIL_CACHE, jcacheConfiguration);
-            createCache(cm, es.incidenceapp.ms.domain.User.class.getName(), jcacheConfiguration);
-            createCache(cm, es.incidenceapp.ms.domain.Authority.class.getName(), jcacheConfiguration);
-            createCache(cm, es.incidenceapp.ms.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            createCache(cm, es.incidenceapp.ms.domain.entities.users.User.class.getName(), jcacheConfiguration);
+            createCache(cm, es.incidenceapp.ms.domain.entities.users.Authority.class.getName(), jcacheConfiguration);
+            createCache(cm, es.incidenceapp.ms.domain.entities.users.User.class.getName() + ".authorities", jcacheConfiguration);
             // jhipster-needle-redis-add-entry
         };
     }

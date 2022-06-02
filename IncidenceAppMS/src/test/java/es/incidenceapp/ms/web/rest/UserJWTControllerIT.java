@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import es.incidenceapp.ms.IntegrationTest;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.repository.UserRepository;
 import es.incidenceapp.ms.web.rest.vm.LoginVM;
 import org.junit.jupiter.api.Test;

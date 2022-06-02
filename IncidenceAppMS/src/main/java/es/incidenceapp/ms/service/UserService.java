@@ -1,8 +1,8 @@
 package es.incidenceapp.ms.service;
 
 import es.incidenceapp.ms.config.Constants;
-import es.incidenceapp.ms.domain.Authority;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.Authority;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.repository.AuthorityRepository;
 import es.incidenceapp.ms.repository.UserRepository;
 import es.incidenceapp.ms.security.AuthoritiesConstants;

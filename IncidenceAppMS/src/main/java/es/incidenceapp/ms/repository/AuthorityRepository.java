@@ -1,7 +1,8 @@
 package es.incidenceapp.ms.repository;
 
-import es.incidenceapp.ms.domain.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import es.incidenceapp.ms.domain.entities.users.Authority;
 
 /**
  * Spring Data JPA repository for the {@link Authority} entity.

@@ -1,4 +1,4 @@
-package es.incidenceapp.ms.domain;
+package es.incidenceapp.ms.domain.entities.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;

@@ -1,8 +1,9 @@
 package es.incidenceapp.ms.service.dto;
 
 import es.incidenceapp.ms.config.Constants;
-import es.incidenceapp.ms.domain.Authority;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.Authority;
+import es.incidenceapp.ms.domain.entities.users.User;
+
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;

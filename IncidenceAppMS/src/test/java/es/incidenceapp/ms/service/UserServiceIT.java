@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import es.incidenceapp.ms.IntegrationTest;
 import es.incidenceapp.ms.config.Constants;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.repository.UserRepository;
 import es.incidenceapp.ms.service.dto.AdminUserDTO;
 import java.time.Instant;

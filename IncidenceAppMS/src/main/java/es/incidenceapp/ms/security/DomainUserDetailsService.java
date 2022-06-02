@@ -1,6 +1,6 @@
 package es.incidenceapp.ms.security;
 
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.repository.UserRepository;
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,0 +1,48 @@
+package es.incidenceapp.ms.domain.entities.organizations.impl;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import es.incidenceapp.ms.domain.entities.organizations.AbstractOrganization;
+import es.incidenceapp.ms.domain.entities.organizations.IOrganization;
+import es.incidenceapp.ms.domain.entities.users.impl.Employee;
+import es.incidenceapp.ms.domain.enums.TypeOrganization;
+
+
+@Entity
+@Table(name = "jhi_organization")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Organization extends AbstractOrganization implements IOrganization {
+
+	private TypeOrganization tipo;
+	private Set<Employee> employees = new HashSet<Employee>();
+
+	
+	@Enumerated(EnumType.STRING)
+	public TypeOrganization getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TypeOrganization tipo) {
+		this.tipo = tipo;
+	}
+
+	@OneToMany(orphanRemoval = true, mappedBy = "organization")
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
+
+}

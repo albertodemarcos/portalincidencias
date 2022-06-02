@@ -1,7 +1,7 @@
 package es.incidenceapp.ms.web.rest;
 
 import es.incidenceapp.ms.config.Constants;
-import es.incidenceapp.ms.domain.User;
+import es.incidenceapp.ms.domain.entities.users.User;
 import es.incidenceapp.ms.repository.UserRepository;
 import es.incidenceapp.ms.security.AuthoritiesConstants;
 import es.incidenceapp.ms.service.MailService;
