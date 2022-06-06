@@ -6,7 +6,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 
-//PrimeNg
+// PrimeNg
 import {PanelModule} from 'primeng/panel';
 import {CalendarModule} from 'primeng/calendar';
 import {InputSwitchModule} from 'primeng/inputswitch';

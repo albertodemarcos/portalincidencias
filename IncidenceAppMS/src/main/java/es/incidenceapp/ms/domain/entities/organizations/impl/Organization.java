@@ -9,30 +9,27 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import es.incidenceapp.ms.domain.entities.organizations.AbstractOrganization;
 import es.incidenceapp.ms.domain.entities.organizations.IOrganization;
 import es.incidenceapp.ms.domain.entities.users.impl.Employee;
-import es.incidenceapp.ms.domain.enums.TypeOrganization;
+import es.incidenceapp.ms.domain.enums.OrganizationType;
 
 
 @Entity
 @Table(name = "jhi_organization")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Organization extends AbstractOrganization implements IOrganization {
 
-	private TypeOrganization tipo;
+	private OrganizationType tipo;
 	private Set<Employee> employees = new HashSet<Employee>();
 
 	
 	@Enumerated(EnumType.STRING)
-	public TypeOrganization getTipo() {
+	public OrganizationType getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TypeOrganization tipo) {
+	public void setTipo(OrganizationType tipo) {
 		this.tipo = tipo;
 	}
 

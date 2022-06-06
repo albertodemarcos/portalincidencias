@@ -1,15 +1,10 @@
 package es.incidenceapp.ms.domain.entities.users.impl;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import es.incidenceapp.ms.domain.entities.organizations.impl.Organization;
 import es.incidenceapp.ms.domain.entities.users.User;
 
 
@@ -22,18 +17,17 @@ public class Employee extends User {
 	/**
 	 * Employee Identification Number
 	 */
-	private String ein;
+	private String employeeIdentificationNumber;
 	private String alias;
-    private Organization organization;
 
 	@Size(max = 256)
-	@Column(name = "ein", length = 50, nullable = false)
-	public String getEin() {
-		return ein;
+	@Column(name = "employee_dentification_number", length = 50, nullable = false)
+	public String getEmployeeIdentificationNumber() {
+		return employeeIdentificationNumber;
 	}
 
-	public void setEin(String ein) {
-		this.ein = ein;
+	public void setEin(String employeeIdentificationNumber) {
+		this.employeeIdentificationNumber = employeeIdentificationNumber;
 	}
 
 	@Size(max = 256)
@@ -45,13 +39,5 @@ public class Employee extends User {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Organization getOrganization() {
-		return organization;
-	}
-
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
-	}
+	
 }

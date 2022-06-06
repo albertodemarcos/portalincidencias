@@ -1,29 +1,50 @@
 package es.incidenceapp.ms.domain.entities.users;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.incidenceapp.ms.config.Constants;
-import es.incidenceapp.ms.domain.entities.organizations.impl.Organization;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import es.incidenceapp.ms.config.Constants;
+import es.incidenceapp.ms.domain.entities.organizations.impl.Organization;
 
 /**
  * A user.
  */
 @Entity
 @Table(name = "jhi_user")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_user", discriminatorType = DiscriminatorType.STRING, length = 20)
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends AbstractAuditingEntity implements Serializable {
 
@@ -83,6 +104,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date")
     private Instant resetDate = null;
+    
+    @Column(name = "type_user", insertable = false, updatable = false)
+    @Size(max = 20)
+    private String typeUser;
+    
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Organization organization;
     
 
     @JsonIgnore
@@ -201,6 +229,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
     
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
 
 	@Override
     public boolean equals(Object o) {

@@ -2,7 +2,7 @@
     "incidences": {
         "title": "Incidence",
         "form": {
-          "button": "Crear tarea",
+          "button": "Crear incidencia",
           "title": {
               "label": "Título",
               "placeholder": "Ponga un título a la incidencia"
@@ -19,10 +19,10 @@
         "messages": {
           "validate": {
             "title": {
-              "required": "El título de la tarea es obligatorio.",
-              "minlength": "El título de la tarea debe tener al menos 5 caracter.",
-              "maxlength": "El título de la tarea no puede tener más de 50 caracteres.",
-              "pattern": "El título de la tarea no es válido."
+              "required": "El título es obligatorio.",
+              "minlength": "El título debe tener al menos 5 caracter.",
+              "maxlength": "El título no puede tener más de 50 caracteres.",
+              "pattern": "El título no es válido."
             },
             "description": {
               "required": "La descripción es obligatoria.",
@@ -35,7 +35,7 @@
               "pattern": "La notificación no es válido."
             }            
           },
-          "success": "<strong>¡Registro guardado!</strong>.",
+          "success": "<strong>¡Incidencia registrada!</strong>. Por favor, mire su correo electronico para ver el estado de la incidencia.",
           "error": {
             "fail": "<strong>¡La creación de la incidencia ha fallado!</strong> Por favor, inténtelo de nuevo más tarde."
           }

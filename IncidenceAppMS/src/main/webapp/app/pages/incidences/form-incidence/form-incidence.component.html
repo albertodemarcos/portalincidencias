@@ -4,10 +4,11 @@
        
         <h1 jhiTranslate="incidences.title" data-cy="incidencesTitle">Incidence</h1>
   
-        <!-- <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
-          <strong>Registration saved!</strong> Please check your email for confirmation.
+         <div class="alert alert-success" *ngIf="success" jhiTranslate="incidences.messages.success">
+          <strong>Incidence saved!</strong> Please check your email for status of incidence.
         </div>
   
+        <!--
         <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
           <strong>Registration failed!</strong> Please try again later.
         </div>
@@ -32,40 +33,40 @@
           <input type="hidden" id="id" class="form-control" name="id" formControlName="id" [ngModel]="idIncidence">
          
           <div class="form-group">
-            <label class="form-control-label" for="title" jhiTranslate="tasks.form.title.label">title</label>
-            <input type="text" class="form-control" id="title" name="title" formControlName="title" data-cy="title" #title placeholder="{{ 'tasks.form.title.placeholder' | translate }}"/>
+            <label class="form-control-label" for="title" jhiTranslate="incidences.form.title.label">title</label>
+            <input type="text" class="form-control" id="title" name="title" formControlName="title" data-cy="title" #title placeholder="{{ 'incidences.form.title.placeholder' | translate }}"/>
             <div *ngIf="incidenceForm.get('title')!.invalid && (incidenceForm.get('title')!.dirty || incidenceForm.get('title')!.touched)">
-              <small class="form-text text-danger" *ngIf="incidenceForm.get('title')?.errors?.required" jhiTranslate="tasks.messages.validate.title.required">
+              <small class="form-text text-danger" *ngIf="incidenceForm.get('title')?.errors?.required" jhiTranslate="incidences.messages.validate.title.required">
                 Your title is required.
               </small>
-              <small class="form-text text-danger" *ngIf="incidenceForm.get('title')?.errors?.minlength" jhiTranslate="tasks.messages.validate.title.minlength">
+              <small class="form-text text-danger" *ngIf="incidenceForm.get('title')?.errors?.minlength" jhiTranslate="incidences.messages.validate.title.minlength">
                 Your title is required to be at least 5 characters.
               </small>
-              <small class="form-text text-danger" *ngIf="incidenceForm.get('title')?.errors?.maxlength" jhiTranslate="tasks.messages.validate.title.maxlength">
+              <small class="form-text text-danger" *ngIf="incidenceForm.get('title')?.errors?.maxlength" jhiTranslate="incidences.messages.validate.title.maxlength">
                 Your title cannot be longer than 50 characters.
               </small>    
             </div>
           </div>
   
           <div class="form-group">
-            <label class="form-control-label" for="description" jhiTranslate="tasks.form.description.label">Description</label>
-            <input type="description" class="form-control" id="description" name="description" formControlName="description" data-cy="description" placeholder="{{ 'tasks.form.description.placeholder' | translate }}"/>
+            <label class="form-control-label" for="description" jhiTranslate="incidences.form.description.label">Description</label>
+            <input type="description" class="form-control" id="description" name="description" formControlName="description" data-cy="description" placeholder="{{ 'incidences.form.description.placeholder' | translate }}"/>
             <div *ngIf="incidenceForm.get('description')!.invalid && (incidenceForm.get('description')!.dirty || incidenceForm.get('description')!.touched)">
-              <small class="form-text text-danger" *ngIf="incidenceForm.get('description')?.errors?.required" jhiTranslate="tasks.messages.validate.description.required">
+              <small class="form-text text-danger" *ngIf="incidenceForm.get('description')?.errors?.required" jhiTranslate="incidences.messages.validate.description.required">
                 Your description is required.
               </small>
-              <small class="form-text text-danger" *ngIf="incidenceForm.get('description')?.errors?.minlength" jhiTranslate="tasks.messages.validate.description.minlength">
+              <small class="form-text text-danger" *ngIf="incidenceForm.get('description')?.errors?.minlength" jhiTranslate="incidences.messages.validate.description.minlength">
                 Your description is required to be at least 15 characters.
               </small>  
-              <small class="form-text text-danger" *ngIf="incidenceForm.get('description')?.errors?.maxlength" jhiTranslate="tasks.messages.validate.description.maxlength">
+              <small class="form-text text-danger" *ngIf="incidenceForm.get('description')?.errors?.maxlength" jhiTranslate="incidences.messages.validate.description.maxlength">
                 Your description cannot be longer than 254 characters.
               </small>
             </div>
           </div>
 
           <!--<div class="form-group">
-            <i class="pi pi-info-circle" id="reminder-tooltip" pTooltip="{{ 'tasks.form.reminder.placeholder' | translate }}"  tooltipPosition="top"></i>
-            <label class="form-control-label" for="reminder-tooltip" jhiTranslate="tasks.form.reminder.label">
+            <i class="pi pi-info-circle" id="reminder-tooltip" pTooltip="{{ 'incidences.form.reminder.placeholder' | translate }}"  tooltipPosition="top"></i>
+            <label class="form-control-label" for="reminder-tooltip" jhiTranslate="incidences.form.reminder.label">
                Reminder
             </label>
             <div>
@@ -95,7 +96,7 @@
             </div>
           </div> -->
             
-          <button type="submit" [disabled]="incidenceForm.invalid" class="btn btn-primary" jhiTranslate="tasks.form.button" data-cy="submit">
+          <button type="submit" [disabled]="incidenceForm.invalid" class="btn btn-primary" jhiTranslate="incidences.form.button" data-cy="submit">
             Create incidence
           </button>
 

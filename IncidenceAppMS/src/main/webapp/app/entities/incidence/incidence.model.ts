@@ -1,21 +1,21 @@
 
 export interface IIncidence {
     
-    create(idP: Number, titleP: string, descriptionP: string, startDateP: Date, endDateP: Date,
-        longitudeP: Number, latitudeP: Number, resolvedP: Boolean): void;
+    create(idP: number, titleP: string, descriptionP: string, startDateP: Date, endDateP: Date,
+        longitudeP: number, latitudeP: number, resolvedP: boolean): void;
 }
 
 
 export class Incidence implements IIncidence {
 
-    id?: Number;
+    id?: number;
     title?: string;
     description?: string; 
     startDate?: Date;
     endDate?: Date;
-    longitude?: Number; 
-    latitude?: Number;
-    resolved?: Boolean; 
+    longitude?: number; 
+    latitude?: number;
+    resolved?: boolean; 
 
     constructor() 
     {  
@@ -29,7 +29,7 @@ export class Incidence implements IIncidence {
         //this.resolved = false;
     }
 
-    create(idP: Number, titleP: string, descriptionP: string, startDateP: Date, endDateP: Date, longitudeP: Number, latitudeP: Number, resolvedP: Boolean): void {
+    create(idP: number, titleP: string, descriptionP: string, startDateP: Date, endDateP: Date, longitudeP: number, latitudeP: number, resolvedP: boolean): void {
         this.id = idP;
         this.title = titleP;
         this.description = descriptionP;
