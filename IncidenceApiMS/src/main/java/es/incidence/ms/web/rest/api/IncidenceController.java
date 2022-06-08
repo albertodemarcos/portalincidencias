@@ -23,7 +23,7 @@ import es.incidence.ms.validators.IncidenceValidator;
 
 
 @RestController
-@RequestMapping(path = {"/IncidenceApi"})
+@RequestMapping(path = {"/incidenceApi"})
 public class IncidenceController {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());

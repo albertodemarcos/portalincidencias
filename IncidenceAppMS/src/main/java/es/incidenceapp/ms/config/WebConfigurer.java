@@ -35,8 +35,12 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     private final JHipsterProperties jHipsterProperties;
     
     private final String [] ALLOWED_URIS = {
-		"/api/**", "/management/**", "/v2/api-docs",
-		"/v3/api-docs", "/swagger-resources", "/swagger-ui/**",
+		"/api/**",
+		"/management/**",
+		"/v2/api-docs",
+		"/v3/api-docs",
+		"/swagger-resources",
+		"/swagger-ui/**",
 		"/planningApi/**"
     };
 
@@ -100,10 +104,12 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
             	 log.debug("Registering ALLOWED URIS: uri={}", uri);
             	source.registerCorsConfiguration(uri, config);
             }
-           /* source.registerCorsConfiguration("/api/**", config);
+           /* 
+            source.registerCorsConfiguration("/api/**", config);            
             source.registerCorsConfiguration("/management/**", config);
             source.registerCorsConfiguration("/v3/api-docs", config);
-            source.registerCorsConfiguration("/swagger-ui/**", config);*/
+            source.registerCorsConfiguration("/swagger-ui/**", config);
+            */
         }
         return new CorsFilter(source);
     }
