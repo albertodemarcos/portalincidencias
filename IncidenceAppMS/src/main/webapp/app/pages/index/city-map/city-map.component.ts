@@ -10,6 +10,7 @@ export class CityMapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Component[CityMapComponent]=>ngOnInit()");
   }
 
 }
