@@ -41,7 +41,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-/*@NgModule({
+/* @NgModule({
   imports: [
     RouterModule.forRoot(
       [
@@ -84,4 +84,5 @@ export class AppRoutingModule {}
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}*/
+export class AppRoutingModule {}
+*/

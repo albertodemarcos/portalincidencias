@@ -11,6 +11,7 @@ import { ListIncidencesComponent } from './list-incidences/list-incidences.compo
 
 // MODULES
 import { SharedModule } from '../../shared/shared.module';
+import { ModalService } from 'app/core/util/modal.service';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     SharedModule,
     RouterModule.forChild(INDEX_ROUTER)
-  ]
+  ],
+  providers: []
 })
 export class IndexModule { }

@@ -9,7 +9,7 @@ import { ViewIncidenceComponent } from './view-incidence/view-incidence.componen
 export const INCIDENCES_ROUTER: Routes = [
   // {path: 'map', component: CityMapComponent},
   // {path: 'list', component: ListIncidencesComponent},
-  {path: '', component: FormIncidenceComponent},
+  {path: 'form', component: FormIncidenceComponent},
   // {path: 'form', component: FormIncidenceComponent},
   {path: 'view', component: ViewIncidenceComponent} 
 ];
