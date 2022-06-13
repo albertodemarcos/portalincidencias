@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'app/core/util/modal.service';
 
+
 @Component({
   selector: 'jhi-city-map',
   templateUrl: './city-map.component.html',
   styleUrls: ['./city-map.component.scss']
 })
 export class CityMapComponent implements OnInit {
+
+  options: any;
+  overlays: any[] | undefined;
 
   constructor(private modalService: ModalService) { }
 
@@ -31,5 +35,27 @@ export class CityMapComponent implements OnInit {
     };
     this.modalService.open('/incidences/view', modalParams, true);
   }
+
+  addIncidence(): void {}
+  
+  editIncidence(): void {}
+
+  deleteIncidence(): void {}
+
+  viewIncidence(): void {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
