@@ -15,23 +15,24 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import es.incidence.ms.domain.entities.organizations.AbstractOrganization;
 import es.incidence.ms.domain.entities.organizations.IOrganization;
 import es.incidence.ms.domain.entities.users.impl.Employee;
-import es.incidence.ms.domain.enums.TypeOrganization;
+import es.incidence.ms.domain.enums.OrganizationType;
+
 
 @Entity
 @Table(name = "jhi_organization")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Organization extends AbstractOrganization implements IOrganization {
 
-	private TypeOrganization tipo;
+	private OrganizationType tipo;
 	private Set<Employee> employees = new HashSet<Employee>();
 
 	
 	@Enumerated(EnumType.STRING)
-	public TypeOrganization getTipo() {
+	public OrganizationType getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TypeOrganization tipo) {
+	public void setTipo(OrganizationType tipo) {
 		this.tipo = tipo;
 	}
 

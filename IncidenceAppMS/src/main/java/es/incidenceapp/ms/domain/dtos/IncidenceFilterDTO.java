@@ -1,14 +1,15 @@
-package es.incidence.ms.utils.filters.impl;
+package es.incidenceapp.ms.domain.dtos;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import es.incidence.ms.utils.filters.IFilter;
+public class IncidenceFilterDTO implements Serializable, IFilter {
 
-public class IncidenceFilter implements IFilter, Serializable {
-
-	private static final long serialVersionUID = -6461456305088783092L;
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7323334250359406967L;
+	
 	private String title;
 	private String description;
 	private Date startDate;
@@ -81,7 +82,5 @@ public class IncidenceFilter implements IFilter, Serializable {
 	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
-
-	
 
 }

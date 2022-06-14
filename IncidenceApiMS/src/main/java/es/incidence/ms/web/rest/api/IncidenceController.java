@@ -34,7 +34,7 @@ public class IncidenceController {
 	@Autowired
 	private IncidenceService incidenceService;
 
-	@GetMapping(path = {"/incidence/{incidenceId}"})
+	@GetMapping(path = {"/incidence/{incidence}"})
 	public ActionResponse getIncidence(@PathVariable Incidence incidence) 
 	{
 		logger.info("Method: IncidencesController.getIncidence(incidenceId={})", incidence != null ? incidence.getId() : null );
@@ -67,7 +67,7 @@ public class IncidenceController {
 		return response;
 	}
 	
-	@PostMapping(path = {"/incidences"})
+	@GetMapping(path = {"/incidences"})
 	public ActionResponse getIncidences(@RequestBody(required = true) final IncidenceFilter incidenceFilter, @ModelAttribute Pageable page)
 	{
 		logger.info("Method: IncidencesController.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );

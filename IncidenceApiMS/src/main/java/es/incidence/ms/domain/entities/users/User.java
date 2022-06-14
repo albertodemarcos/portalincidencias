@@ -1,24 +1,45 @@
 package es.incidence.ms.domain.entities.users;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.incidence.ms.config.Constants;
-import es.incidence.ms.domain.embebbed.PersonalData;
-import es.incidence.ms.domain.embebbed.PostalData;
-import es.incidence.ms.domain.entities.organizations.impl.Organization;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import es.incidence.ms.config.Constants;
+import es.incidence.ms.domain.embebbed.PersonalData;
+import es.incidence.ms.domain.embebbed.PostalData;
+import es.incidence.ms.domain.entities.organizations.impl.Organization;
 
 /**
  * A user.
@@ -26,7 +47,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "jhi_user", indexes = {@Index(columnList = "organization_id")})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 20)
+@DiscriminatorColumn(name = "type_user", discriminatorType = DiscriminatorType.STRING, length = 20)
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends AbstractAuditingEntity implements Serializable {
 
@@ -37,9 +58,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @SequenceGenerator(name = "user_sequence", sequenceName = "sequence_user", allocationSize = 1)
     private Long id;
     
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Organization organization;
+    @Embedded
+    private PersonalData personaldata;
+    
+    @Embedded
+	private PostalData postalData;
+	
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Organization organization;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -83,13 +109,11 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
     
-    @NotNull
-    @Size(max = 256)
-    @Column(name = "type", length = 50, nullable = false)
-    private String type;
+    @Column(name = "type_user", insertable = false, updatable = false)
+    @Size(max = 20)
+    private String typeUser;
     
-    private PersonalData personaldata;
-	private PostalData postalData;
+    
 
     public Long getId() {
         return id;
@@ -172,15 +196,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
-    public String getType() {
-		return type;
+	public String getTypeUser() {
+		return typeUser;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeUser(String typeUser) {
+		this.typeUser = typeUser;
 	}
-	
-	@Embedded
+
 	public PersonalData getPersonaldata() {
 		return personaldata;
 	}
@@ -189,7 +212,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 		this.personaldata = personaldata;
 	}
 
-	@Embedded
 	public PostalData getPostalData() {
 		return postalData;
 	}

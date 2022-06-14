@@ -16,22 +16,21 @@ public class Employee extends User {
 	/**
 	 * Employee Identification Number
 	 */
-	private String ein;
+	private String employeeIdentificationNumber;
 	private String alias;
-	
 
 	@Size(max = 256)
-	@Column(name = "type", length = 50, nullable = false)
-	public String getEin() {
-		return ein;
+	@Column(name = "employee_dentification_number", length = 50, nullable = false)
+	public String getEmployeeIdentificationNumber() {
+		return employeeIdentificationNumber;
 	}
 
-	public void setEin(String ein) {
-		this.ein = ein;
+	public void setEin(String employeeIdentificationNumber) {
+		this.employeeIdentificationNumber = employeeIdentificationNumber;
 	}
 
 	@Size(max = 256)
-	@Column(name = "type", length = 50, nullable = false)
+	@Column(name = "alias", length = 50, nullable = false)
 	public String getAlias() {
 		return alias;
 	}

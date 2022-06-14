@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,7 @@ import es.incidence.ms.domain.embebbed.Location;
 import es.incidence.ms.domain.entities.organizations.impl.Organization;
 import es.incidence.ms.domain.entities.users.impl.Citizen;
 import es.incidence.ms.domain.entities.users.impl.Employee;
+import es.incidence.ms.domain.enums.IncidenceStatus;
 
 
 @Entity
@@ -36,13 +39,14 @@ public class Incidence {
 	private String description;
 	private Date startDate;
 	private Date endDate;
+	private IncidenceStatus status;
 	private Boolean resolved;
 	private Location location;
 	private Organization organization;
 	private Citizen citizen; //this user create incidence
 	private Employee employee; //this user finish incidence
 	
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "incidence_sequence")
     @SequenceGenerator(name = "incidence_sequence", sequenceName="sequence_incidence", allocationSize=1)
@@ -89,6 +93,17 @@ public class Incidence {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	
+	@Enumerated(EnumType.STRING)
+	@Size(max = 255)
+	@Column(name = "status", length = 255)
+	public IncidenceStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(IncidenceStatus status) {
+		this.status = status;
+	}
 
 	public Boolean getResolved() {
 		return resolved;
@@ -125,7 +140,7 @@ public class Incidence {
 		this.citizen = citizen;
 	}
 
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -133,5 +148,6 @@ public class Incidence {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
 
 }
