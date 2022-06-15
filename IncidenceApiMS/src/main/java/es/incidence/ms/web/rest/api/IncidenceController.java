@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.incidence.ms.domain.dtos.IncidenceDTO;
 import es.incidence.ms.domain.entities.incidences.Incidence;
 import es.incidence.ms.service.impl.IncidenceService;
 import es.incidence.ms.utils.ActionResponse;
-import es.incidence.ms.utils.dtos.IncidenceDto;
 import es.incidence.ms.utils.filters.impl.IncidenceFilter;
 import es.incidence.ms.validators.IncidenceValidator;
 
@@ -43,18 +43,18 @@ public class IncidenceController {
 	}
 	
 	@PostMapping(path = {"/createIncidence"})
-	public ActionResponse createIncidence(@RequestBody(required = true) IncidenceDto incidenceDto, BindingResult result) 
+	public ActionResponse createIncidence(@RequestBody(required = true) IncidenceDTO incidenceDTO, BindingResult result) 
 	{
-		logger.info("Method: IncidencesController.createIncidence(incidenceDto={})", (incidenceDto!=null?incidenceDto.toString():null) );
+		logger.info("Method: IncidencesController.createIncidence(incidenceDto={})", (incidenceDTO!=null?incidenceDTO.toString():null) );
 		
-		incidenceValidator.validate(incidenceDto, result);
+		incidenceValidator.validate(incidenceDTO, result);
 		
 		if( result.hasErrors() ) {
 			
 			return new ActionResponse("-1", null, result.getAllErrors() );
 		}
 		
-		ActionResponse response = this.incidenceService.createIncidence(incidenceDto, result);
+		ActionResponse response = this.incidenceService.createIncidence(incidenceDTO, result);
 
 		return response;
 	}

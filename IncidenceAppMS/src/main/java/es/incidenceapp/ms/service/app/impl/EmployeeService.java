@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import es.incidenceapp.ms.components.HttpMicroserviceService;
-import es.incidenceapp.ms.components.URLConstans;
+import es.incidenceapp.ms.components.MicroserviceConstans;
 import es.incidenceapp.ms.domain.dtos.ActionResponse;
 import es.incidenceapp.ms.domain.dtos.EmployeeDTO;
 import es.incidenceapp.ms.domain.dtos.EmployeeFilterDTO;
@@ -30,10 +30,10 @@ public class EmployeeService implements IEmployeeService {
 		{
 			logger.error("The employeeDTOId has defects. employeeDTOId={}", employeeDTOId);
 			
-			return new ActionResponse(URLConstans.NOK, "The employeeDTOId has not ID" );
+			return new ActionResponse(MicroserviceConstans.NOK, "The employeeDTOId has not ID" );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.getEntity(employeeDTOId, URLConstans.PORTAL_INCIDENCE, URLConstans.EMPLOYEE);
+		ActionResponse _response = this.httpMicroserviceService.getEntity(employeeDTOId, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.EMPLOYEE);
 		
 		logger.info("End Method: EmployeeService.getEmployee(employeeDTOId={}). Result: {}", employeeDTOId, _response.getCode() );
 		
@@ -49,10 +49,10 @@ public class EmployeeService implements IEmployeeService {
 
 			logger.error("The employeeDTO has defects. Error={}", result.getFieldErrors().toString());
 			
-			return new ActionResponse(URLConstans.NOK, "The employeeDTO has defects.", result.getFieldErrors().toString() );
+			return new ActionResponse(MicroserviceConstans.NOK, "The employeeDTO has defects.", result.getFieldErrors().toString() );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.saveEntity(employeeDTO, URLConstans.PORTAL_INCIDENCE, URLConstans.EMPLOYEE);
+		ActionResponse _response = this.httpMicroserviceService.saveEntity(employeeDTO, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.EMPLOYEE);
 		
 		logger.info("End Method: EmployeeService.createEmployee(employeeDTO={}). Result: {}", employeeDTO != null ? employeeDTO.toString() : null, _response.getCode() );
 		
@@ -68,10 +68,10 @@ public class EmployeeService implements IEmployeeService {
 		{
 			logger.error("The employeeDTOId has defects. employeeDTOId={}", employeeDTOId);
 			
-			return new ActionResponse(URLConstans.NOK, "The employeeDTOId has not ID" );
+			return new ActionResponse(MicroserviceConstans.NOK, "The employeeDTOId has not ID" );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.deleteEntity(employeeDTOId, URLConstans.PORTAL_INCIDENCE, URLConstans.EMPLOYEE);
+		ActionResponse _response = this.httpMicroserviceService.deleteEntity(employeeDTOId, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.EMPLOYEE);
 		
 		logger.info("End Method: EmployeeService.deleteEmployeeId(employeeDTOId={}). Result: {}", employeeDTOId, _response.getCode() );
 		
@@ -87,10 +87,10 @@ public class EmployeeService implements IEmployeeService {
 
 			logger.error("The employeeFilterDTO has defects");
 			
-			return new ActionResponse(URLConstans.NOK, "The employeeFilterDTO has defects." );
+			return new ActionResponse(MicroserviceConstans.NOK, "The employeeFilterDTO has defects." );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.listEntities(employeeFilterDTO, URLConstans.PORTAL_INCIDENCE, URLConstans.EMPLOYEE);
+		ActionResponse _response = this.httpMicroserviceService.listEntities(employeeFilterDTO, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.EMPLOYEE);
 		
 		logger.info("End Method: EmployeeService.getEmployees(employeeFilterDTO={}). Result: {}", employeeFilterDTO != null ? employeeFilterDTO.toString() : null, _response.getCode() );
 		

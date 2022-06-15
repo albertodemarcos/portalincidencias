@@ -3,7 +3,7 @@ package es.incidenceapp.ms.components;
 /**
  * Application constants.
  */
-public final class URLConstans {
+public final class MicroserviceConstans {
 	
 	public static final String NOK = "-1";
     public static final String OK = "1";
@@ -39,6 +39,6 @@ public final class URLConstans {
 	public static final String URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_EMPLOYEE = "/incidenceApi/task/";
 	public static final String URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_EMPLOYEES = "/incidenceApi/list";
 
-    private URLConstans() {}
+    private MicroserviceConstans() {}
 
 }

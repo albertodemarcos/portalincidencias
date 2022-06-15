@@ -38,7 +38,7 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		if( StringUtils.isBlank(_url) )
 		{	
 			logger.error("Error. URL={}", _url);
-			return new ActionResponse(URLConstans.NOK, "Internal error!");
+			return new ActionResponse(MicroserviceConstans.NOK, "Internal error!");
 		}
 		
 		HttpEntity<?> _params = this.getParamsURL();
@@ -56,7 +56,7 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		if( StringUtils.isBlank(_url) )
 		{	
 			logger.error("Error. URL={}", _url);
-			return new ActionResponse(URLConstans.NOK, "Internal error!");
+			return new ActionResponse(MicroserviceConstans.NOK, "Internal error!");
 		}
 		
 		HttpEntity<?> _params = this.postParamsURL(objectDto);
@@ -75,7 +75,7 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		if( StringUtils.isBlank(_url) )
 		{	
 			logger.error("Error. URL={}", _url);
-			return new ActionResponse(URLConstans.NOK, "Internal error!");
+			return new ActionResponse(MicroserviceConstans.NOK, "Internal error!");
 		}
 		
 		HttpEntity<?> _params = this.getParamsURL();
@@ -94,7 +94,7 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		if( StringUtils.isBlank(_url) )
 		{	
 			logger.error("Error. URL={}", _url);
-			return new ActionResponse(URLConstans.NOK, "Internal error!");
+			return new ActionResponse(MicroserviceConstans.NOK, "Internal error!");
 		}
 		
 		HttpEntity<?> _params = this.postParamsURL(filters);
@@ -161,13 +161,13 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		{
 			logger.error("The microservice is not working. Try again on five minutes");
 			e.printStackTrace();
-			_response = new ActionResponse(URLConstans.NOK, "The microservice is not working. Try again on five minutes");
+			_response = new ActionResponse(MicroserviceConstans.NOK, "The microservice is not working. Try again on five minutes");
 		}
 		catch(Exception e) 
 		{
 			logger.error("The microservice is not working. Try again on five minutes");
 			e.printStackTrace();
-			_response = new ActionResponse(URLConstans.NOK, "The microservice is not working. Try again on five minutes");
+			_response = new ActionResponse(MicroserviceConstans.NOK, "The microservice is not working. Try again on five minutes");
 		}
 		
 		return _response;
@@ -178,21 +178,21 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		
 		switch(entityName) 
 		{
-		case URLConstans.INCIDENCE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_GET_INCIDENCE + entityId.toString();
+		case MicroserviceConstans.INCIDENCE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_GET_INCIDENCE + entityId.toString();
 			break;
-		case URLConstans.ORGANIZATION:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_GET_ORGANIZATION + entityId.toString();
+		case MicroserviceConstans.ORGANIZATION:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_GET_ORGANIZATION + entityId.toString();
 			break;
-		case URLConstans.EMPLOYEE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_GET_EMPLOYEE + entityId.toString();
+		case MicroserviceConstans.EMPLOYEE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_GET_EMPLOYEE + entityId.toString();
 			break;
 		default:
 			
 			break;			
 		}
 		
-		String _url = this.getCreateUrl(URLConstans.URL_GENERAL, microserviceName, _uri );
+		String _url = this.getCreateUrl(MicroserviceConstans.URL_GENERAL, microserviceName, _uri );
 		
 		return _url;
 	}
@@ -203,21 +203,21 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		
 		switch(entityName) 
 		{
-		case URLConstans.INCIDENCE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_CREATE_INCIDENCE;
+		case MicroserviceConstans.INCIDENCE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_CREATE_INCIDENCE;
 			break;
-		case URLConstans.ORGANIZATION:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_CREATE_ORGANIZATION;
+		case MicroserviceConstans.ORGANIZATION:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_CREATE_ORGANIZATION;
 			break;
-		case URLConstans.EMPLOYEE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_CREATE_EMPLOYEE;
+		case MicroserviceConstans.EMPLOYEE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_CREATE_EMPLOYEE;
 			break;
 		default:
 			
 			break;			
 		}
 		
-		String _url = this.getCreateUrl(URLConstans.URL_GENERAL, microserviceName, _uri );
+		String _url = this.getCreateUrl(MicroserviceConstans.URL_GENERAL, microserviceName, _uri );
 		
 		return _url;
 	}
@@ -227,21 +227,21 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		
 		switch(entityName) 
 		{
-		case URLConstans.INCIDENCE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_INCIDENCE + entityId.toString();
+		case MicroserviceConstans.INCIDENCE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_INCIDENCE + entityId.toString();
 			break;
-		case URLConstans.ORGANIZATION:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_ORGANIZATION + entityId.toString();
+		case MicroserviceConstans.ORGANIZATION:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_ORGANIZATION + entityId.toString();
 			break;
-		case URLConstans.EMPLOYEE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_EMPLOYEE + entityId.toString();
+		case MicroserviceConstans.EMPLOYEE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_DELETE_EMPLOYEE + entityId.toString();
 			break;
 		default:
 			
 			break;			
 		}
 		
-		String _url = this.getCreateUrl(URLConstans.URL_GENERAL, microserviceName, _uri );
+		String _url = this.getCreateUrl(MicroserviceConstans.URL_GENERAL, microserviceName, _uri );
 		
 		return _url;
 	}
@@ -251,21 +251,21 @@ public class HttpMicroserviceService implements IHttpMicroserviceService {
 		
 		switch(entityName) 
 		{
-		case URLConstans.INCIDENCE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_INCIDENCES;
+		case MicroserviceConstans.INCIDENCE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_INCIDENCES;
 			break;
-		case URLConstans.ORGANIZATION:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_ORGANIZATIONS;
+		case MicroserviceConstans.ORGANIZATION:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_ORGANIZATIONS;
 			break;
-		case URLConstans.EMPLOYEE:
-			_uri = URLConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_EMPLOYEES;
+		case MicroserviceConstans.EMPLOYEE:
+			_uri = MicroserviceConstans.URL_MICROSERVICE_PORTAL_INCIDENCE_LIST_EMPLOYEES;
 			break;
 		default:
 			
 			break;			
 		}
 		
-		String _url = this.getCreateUrl(URLConstans.URL_GENERAL, microserviceName, _uri );
+		String _url = this.getCreateUrl(MicroserviceConstans.URL_GENERAL, microserviceName, _uri );
 		
 		return _url;
 	}

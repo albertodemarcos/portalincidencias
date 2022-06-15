@@ -28,7 +28,6 @@ public class IncidenceDTO implements Serializable {
 
 	public IncidenceDTO() {
 		super();
-
 	}
 
 	public IncidenceDTO(Long id, String title, String description, Date startDate, Date endDate, IncidenceStatus status,
@@ -46,6 +45,10 @@ public class IncidenceDTO implements Serializable {
 		this.organizationId = organizationId;
 		this.citizenId = citizenId;
 		this.employeeId = employeeId;
+	}
+	
+	public boolean isNew() {
+		return id == null;
 	}
 
 	public Long getId() {

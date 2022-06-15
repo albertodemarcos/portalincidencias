@@ -13,20 +13,26 @@ public class OrganizationDTO implements Serializable {
 	private static final long serialVersionUID = -4578913419346250386L;
 	
 	private Long id;
-	private String nombre;
-	private String descripcion;
-	private OrganizationType tipo;
+	private String name;
+	private String description;
+	private OrganizationType type;
+	private Long longitude;
+	private Long latitude;
 
 	public OrganizationDTO() {
 		super();
 	}
 
-	public OrganizationDTO(Long id, String nombre, String descripcion, OrganizationType tipo) {
+	public OrganizationDTO(Long id, String name, String description, OrganizationType type) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.tipo = tipo;
+		this.name = name;
+		this.description = description;
+		this.type = type;
+	}
+	
+	public boolean isNew() {
+		return id == null;
 	}
 
 	public Long getId() {
@@ -37,28 +43,46 @@ public class OrganizationDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public OrganizationType getTipo() {
-		return tipo;
+	public OrganizationType getType() {
+		return type;
 	}
 
-	public void setTipo(OrganizationType tipo) {
-		this.tipo = tipo;
+	public void setType(OrganizationType type) {
+		this.type = type;
 	}
+
+	public Long getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Long longitude) {
+		this.longitude = longitude;
+	}
+
+	public Long getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Long latitude) {
+		this.latitude = latitude;
+	}
+	
+	
 
 }

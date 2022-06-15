@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import es.incidence.ms.domain.dtos.IncidenceDTO;
 import es.incidence.ms.domain.embebbed.Location;
 import es.incidence.ms.domain.entities.incidences.Incidence;
 import es.incidence.ms.domain.entities.organizations.impl.Organization;
@@ -22,7 +23,6 @@ import es.incidence.ms.repository.IncidenceRepository;
 import es.incidence.ms.repository.OrganizationRepository;
 import es.incidence.ms.service.IIncidenceService;
 import es.incidence.ms.utils.ActionResponse;
-import es.incidence.ms.utils.dtos.IncidenceDto;
 import es.incidence.ms.utils.dtos.IncidenceListDto;
 import es.incidence.ms.utils.filters.impl.IncidenceFilter;
 
@@ -60,45 +60,45 @@ public class IncidenceService implements IIncidenceService {
 			return new ActionResponse("1", "", null);
 		}
 		
-		IncidenceDto incidenceDto = this.populateIncidenceDto(incidence);
+		IncidenceDTO incidenceDTO = this.populateIncidenceDTO(incidence);
 		
-		return new ActionResponse("1", "", incidenceDto);
+		return new ActionResponse("1", "", incidenceDTO);
 	}
 
 	@Override
-	public ActionResponse createIncidence(IncidenceDto incidenceDto, BindingResult result) {
+	public ActionResponse createIncidence(IncidenceDTO incidenceDTO, BindingResult result) {
 		// TODO Auto-generated method stub
-		logger.info("Method: IncidenceService.createIncidence(incidenceDto={})", (incidenceDto!=null?incidenceDto.toString():null) );
+		logger.info("Method: IncidenceService.createIncidence(incidenceDTO={})", (incidenceDTO!=null?incidenceDTO.toString():null) );
 		
 		Incidence incidence = null;
 		
-		if( incidenceDto.isNew() ) {
+		if( incidenceDTO.isNew() ) {
 			
 			incidence = new Incidence();
 			
 		} else {
 			
-			incidence = incidenceRepository.findByIdAndOrganizationId(incidenceDto.getId(), incidenceDto.getOrganizationId() ).orElse(null);
+			incidence = incidenceRepository.findByIdAndOrganizationId(incidenceDTO.getId(), incidenceDTO.getOrganizationId() ).orElse(null);
 			
 			if( incidence == null ) 
 				new ActionResponse("1", "La entidad no existe");
 						
 		}
 		
-		incidence.setTitle(incidenceDto.getTitle());
-		incidence.setDescription(incidenceDto.getDescription());
-		incidence.setStartDate(incidenceDto.getStartDate());
+		incidence.setTitle(incidenceDTO.getTitle());
+		incidence.setDescription(incidenceDTO.getDescription());
+		incidence.setStartDate(incidenceDTO.getStartDate());
 
-		Location location = new Location(incidenceDto.getLongitude(), incidenceDto.getLatitude() );
+		Location location = new Location(incidenceDTO.getLongitude(), incidenceDTO.getLatitude() );
 		incidence.setLocation(location);
 		
-		Organization organization = this.organizationRepository.findById(incidenceDto.getOrganizationId()).orElse(null);
+		Organization organization = this.organizationRepository.findById(incidenceDTO.getOrganizationId()).orElse(null);
 		incidence.setOrganization(organization);
 		
-		Citizen citizen = this.citizenRepository.findByIdAndOrganizationId(incidenceDto.getCitizenId(), incidenceDto.getOrganizationId()).orElse(null);
+		Citizen citizen = this.citizenRepository.findByIdAndOrganizationId(incidenceDTO.getCitizenId(), incidenceDTO.getOrganizationId()).orElse(null);
 		incidence.setCitizen(citizen);
 		
-		Employee employee = this.employeeRepository.findByIdAndOrganizationId(incidenceDto.getEmployeeId(), incidenceDto.getOrganizationId()).orElse(null);
+		Employee employee = this.employeeRepository.findByIdAndOrganizationId(incidenceDTO.getEmployeeId(), incidenceDTO.getOrganizationId()).orElse(null);
 		incidence.setEmployee(employee);
 		
 		incidenceRepository.save(incidence);
@@ -237,41 +237,41 @@ public class IncidenceService implements IIncidenceService {
 		return response;
 	}
 	
-	private IncidenceDto populateIncidenceDto(Incidence incidence) {
+	private IncidenceDTO populateIncidenceDTO(Incidence incidence) {
 		
-		IncidenceDto incidenceDto = new IncidenceDto();
+		IncidenceDTO incidenceDTO = new IncidenceDTO();
 		
-		incidenceDto.setId(incidence.getId());
-		incidenceDto.setTitle(incidence.getTitle());
-		incidenceDto.setDescription(incidence.getDescription());
-		incidenceDto.setStartDate(incidence.getStartDate());
-		incidenceDto.setEndDate(incidence.getEndDate());
+		incidenceDTO.setId(incidence.getId());
+		incidenceDTO.setTitle(incidence.getTitle());
+		incidenceDTO.setDescription(incidence.getDescription());
+		incidenceDTO.setStartDate(incidence.getStartDate());
+		incidenceDTO.setEndDate(incidence.getEndDate());
 		
 		if( incidence.getCitizen() != null )
 		
-			incidenceDto.setCitizenId(incidence.getCitizen().getId());
+			incidenceDTO.setCitizenId(incidence.getCitizen().getId());
 		
 		if( incidence.getEmployee() != null )
 		
-			incidenceDto.setEmployeeId(incidence.getEmployee().getId());
+			incidenceDTO.setEmployeeId(incidence.getEmployee().getId());
 		
 		if( incidence.getOrganization() != null )
 		
-			incidenceDto.setOrganizationId(incidence.getOrganization().getId());
+			incidenceDTO.setOrganizationId(incidence.getOrganization().getId());
 
-		this.populateLocationToIncidenceDto(incidence, incidenceDto);
+		this.populateLocationToIncidenceDTO(incidence, incidenceDTO);
 		
-		return incidenceDto;
+		return incidenceDTO;
 	}
 
-	private void populateLocationToIncidenceDto(Incidence incidence, IncidenceDto incidenceDto) {
+	private void populateLocationToIncidenceDTO(Incidence incidence, IncidenceDTO incidenceDTO) {
 		
 		if( incidence.getLocation() == null ) {
 			return;
 		}		
 		
-		incidenceDto.setLatitude(  incidence.getLocation().getLongitude() );
-		incidenceDto.setLongitude( incidence.getLocation().getLatitude() );		
+		incidenceDTO.setLatitude(  incidence.getLocation().getLongitude() );
+		incidenceDTO.setLongitude( incidence.getLocation().getLatitude() );		
 	}
 
 

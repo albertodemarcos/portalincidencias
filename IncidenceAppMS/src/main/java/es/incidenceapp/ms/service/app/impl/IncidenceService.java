@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import es.incidenceapp.ms.components.HttpMicroserviceService;
-import es.incidenceapp.ms.components.URLConstans;
+import es.incidenceapp.ms.components.MicroserviceConstans;
 import es.incidenceapp.ms.domain.dtos.ActionResponse;
 import es.incidenceapp.ms.domain.dtos.IncidenceDTO;
 import es.incidenceapp.ms.domain.dtos.IncidenceFilterDTO;
@@ -30,10 +30,10 @@ public class IncidenceService implements IIncidenceService {
 		{
 			logger.error("The incidenceDTOId has defects. incidenceDTOId={}", incidenceDTOId);
 			
-			return new ActionResponse(URLConstans.NOK, "The incidenceDTOId has not ID" );
+			return new ActionResponse(MicroserviceConstans.NOK, "The incidenceDTOId has not ID" );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.getEntity(incidenceDTOId, URLConstans.PORTAL_INCIDENCE, URLConstans.INCIDENCE);
+		ActionResponse _response = this.httpMicroserviceService.getEntity(incidenceDTOId, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.INCIDENCE);
 		
 		logger.info("End Method: IncidenceService.getIncidence(incidenceDTOId={}). Result: {}", incidenceDTOId, _response.getCode() );
 		
@@ -49,10 +49,10 @@ public class IncidenceService implements IIncidenceService {
 
 			logger.error("The incidenceDTO has defects. Error={}", result.getFieldErrors().toString());
 			
-			return new ActionResponse(URLConstans.NOK, "The incidenceDTO has defects.", result.getFieldErrors().toString() );
+			return new ActionResponse(MicroserviceConstans.NOK, "The incidenceDTO has defects.", result.getFieldErrors().toString() );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.saveEntity(incidenceDTO, URLConstans.PORTAL_INCIDENCE, URLConstans.INCIDENCE);
+		ActionResponse _response = this.httpMicroserviceService.saveEntity(incidenceDTO, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.INCIDENCE);
 		
 		logger.info("End Method: IncidenceService.createIncidence(incidenceDTO={}). Result: {}", incidenceDTO != null ? incidenceDTO.toString() : null, _response.getCode() );
 		
@@ -68,10 +68,10 @@ public class IncidenceService implements IIncidenceService {
 		{
 			logger.error("The incidenceDTOId has defects. incidenceDTOId={}", incidenceDTOId);
 			
-			return new ActionResponse(URLConstans.NOK, "The incidenceDTOId has not ID" );
+			return new ActionResponse(MicroserviceConstans.NOK, "The incidenceDTOId has not ID" );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.deleteEntity(incidenceDTOId, URLConstans.PORTAL_INCIDENCE, URLConstans.INCIDENCE);
+		ActionResponse _response = this.httpMicroserviceService.deleteEntity(incidenceDTOId, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.INCIDENCE);
 		
 		logger.info("End Method: IncidenceService.deleteOrganizationId(incidenceDTOId={}). Result: {}", incidenceDTOId, _response.getCode() );
 		
@@ -87,10 +87,10 @@ public class IncidenceService implements IIncidenceService {
 
 			logger.error("The incidenceFilterDTO has defects");
 			
-			return new ActionResponse(URLConstans.NOK, "The incidenceFilterDTO has defects." );
+			return new ActionResponse(MicroserviceConstans.NOK, "The incidenceFilterDTO has defects." );
 		}
 		
-		ActionResponse _response = this.httpMicroserviceService.listEntities(incidenceFilterDTO, URLConstans.PORTAL_INCIDENCE, URLConstans.INCIDENCE);
+		ActionResponse _response = this.httpMicroserviceService.listEntities(incidenceFilterDTO, MicroserviceConstans.PORTAL_INCIDENCE, MicroserviceConstans.INCIDENCE);
 		
 		logger.info("End Method: IncidenceService.getIncidences(incidenceFilterDTO={}). Result: {}", incidenceFilterDTO != null ? incidenceFilterDTO.toString() : null, _response.getCode() );
 		

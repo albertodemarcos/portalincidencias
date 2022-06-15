@@ -1,33 +1,37 @@
-package es.incidence.ms.utils.dtos;
+package es.incidence.ms.domain.dtos;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import es.incidence.ms.domain.enums.IncidenceStatus;
+public class IncidenceListDTO {
 
-public class IncidenceDto implements Serializable {
-
-	private static final long serialVersionUID = -7123807458265602086L;
-	
 	private Long id;
 	private String title;
 	private String description;
 	private Date startDate;
 	private Date endDate;
-	private IncidenceStatus status;
-	private Boolean resolved;
 	private Long longitude;
 	private Long latitude;
 	private Long organizationId;
 	private Long citizenId;
 	private Long employeeId;
-
-	public IncidenceDto() {
+	
+	public IncidenceListDTO() {
 		super();
 	}
-
-	public boolean isNew() {
-		return id == null;
+	
+	//IncidenceRepositoryImpl.getIncidencesByFilter
+	public IncidenceListDTO(Long id, String title, String description, Date startDate, Date endDate, Long longitude, Long latitude, Long organizationId, Long citizenId, Long employeeId) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.organizationId = organizationId;
+		this.citizenId = citizenId;
+		this.employeeId = employeeId;
 	}
 
 	public Long getId() {
@@ -68,22 +72,6 @@ public class IncidenceDto implements Serializable {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public IncidenceStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(IncidenceStatus status) {
-		this.status = status;
-	}
-
-	public Boolean getResolved() {
-		return resolved;
-	}
-
-	public void setResolved(Boolean resolved) {
-		this.resolved = resolved;
 	}
 
 	public Long getLongitude() {
