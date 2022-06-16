@@ -57,6 +57,10 @@ public class EmployeeDTO implements Serializable {
 		this.alias = alias;
 		this.authoritiesId = authoritiesId;
 	}
+	
+	public boolean isNew() {
+		return id == null;
+	}
 
 	public Long getId() {
 		return id;

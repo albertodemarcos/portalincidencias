@@ -17,6 +17,4 @@ public interface IOrganizationService {
 	ActionResponse deleteOrganization(final Long organizationId);
 	
 	ActionResponse getOrganizations(final Long citizenId, final Long organizationId, final OrganizationFilter organizationFilter, Pageable page );
-	
-
 }

@@ -71,8 +71,10 @@ public class OrganizationService implements IOrganizationService {
 		organization.setLocation(location);
 		
 		organizationRepository.save(organization);
+		
+		ActionResponse response = new ActionResponse("1", "The organization was created", organization );
 				
-		return new ActionResponse("1", "The organization was created", organization );
+		return response;
 	}
 
 	@Override
@@ -91,21 +93,21 @@ public class OrganizationService implements IOrganizationService {
 		{
 			organizationRepository.deleteById(organizationId);
 			
-			response = new ActionResponse("1", null);
+			response = new ActionResponse("1", "The organization was deleted");
 		}
 		catch(IllegalArgumentException iae) {
 			
-			logger.error("Se ha producido un error al eliminar la entidad con id={} porque el argumento no es valido", organizationId);
+			logger.error("An error occurred while deleting the entity with id={} because the argument is not valid", organizationId);
 			logger.error("Error: {}", iae.getMessage());
 			
-			response = new ActionResponse("-1", "El argumento id es invalido");
+			response = new ActionResponse("-1", "The id argument is invalid");
 		}
 		catch(Exception e) {
 			
-			logger.error("Se ha producido un error al eliminar la entidad con id={}", organizationId);
+			logger.error("An error occurred while deleting entity with id={}", organizationId);
 			logger.error("Error: {}", e.getMessage());
 			
-			response = new ActionResponse("-1", "Se ha producido un error");
+			response = new ActionResponse("-1", "Error! The entity was not deleted");
 		}
 		
 		return response;
@@ -116,33 +118,35 @@ public class OrganizationService implements IOrganizationService {
 		// TODO Auto-generated method stub
 		logger.info("Method: OrganizationService.getOrganizations(organizationFilter={})", (organizationFilter !=null ? organizationFilter.toString() : null ) );
 		
-		ActionResponse actionResponse = null;
+		Page<OrganizationListDTO> organizationsPage = null;
 		
 		try {
 		
-			Page<OrganizationListDTO> organizationsPage = organizationRepository.getOrganizationsByFilter(organizationFilter, page);
+			organizationsPage = organizationRepository.getOrganizationsByFilter(organizationFilter, page);
 			
 			if( organizationsPage == null ) {
 				
-				throw new Exception("No hay datos");
+				throw new Exception("There's not data");
 			}
-			
-			actionResponse = new ActionResponse("1", null, organizationsPage);
 			
 		} catch(Exception e) {
 			
-			logger.error("Se ha producido un error");
+			logger.error("An error has occurred while obtaining the list of organizations");
 			
-			e.printStackTrace();
+			logger.error("Error! {}", e.getMessage());
 			
-			actionResponse = new ActionResponse("-1", null, null);
+			return new ActionResponse("-1", "An error has occurred while obtaining the list of organizations");
 		}
+		
+		ActionResponse actionResponse = new ActionResponse("1", null, organizationsPage);;
 		
 		return actionResponse;
 	}
 	
 	
 	private OrganizationDTO populateOrganizationDTO(Organization organization) {
+		
+		logger.trace("populateOrganizationDTO(organizationId={})", organization.getId());
 		
 		OrganizationDTO organizationDTO = new OrganizationDTO();
 		
@@ -157,6 +161,8 @@ public class OrganizationService implements IOrganizationService {
 	}
 
 	private void populateLocationToOrganizationDTO(Organization organization, OrganizationDTO organizationDTO) {
+		
+		logger.trace("populateLocationToOrganizationDTO(organizationId={})", organization.getId());
 		
 		if( organization.getLocation() == null ) {
 			return;
