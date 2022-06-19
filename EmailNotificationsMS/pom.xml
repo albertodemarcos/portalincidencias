@@ -298,6 +298,21 @@
             <artifactId>postgresql</artifactId>
             <scope>provided</scope>
         </dependency>
+        
+         <!-- https://mvnrepository.com/artifact/net.javacrumbs.shedlock/shedlock-spring -->
+		<dependency>
+		    <groupId>net.javacrumbs.shedlock</groupId>
+		    <artifactId>shedlock-spring</artifactId>
+		    <version>4.33.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.javacrumbs.shedlock/shedlock-provider-jdbc-template -->
+		<dependency>
+		    <groupId>net.javacrumbs.shedlock</groupId>
+		    <artifactId>shedlock-provider-jdbc-template</artifactId>
+		    <version>4.33.0</version>
+		</dependency>
+        
+        
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
 
