@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import es.incidence.ms.domain.dtos.IncidenceDTO;
+import es.incidence.ms.domain.dtos.IncidenceFilterDTO;
+import es.incidence.ms.domain.dtos.IncidenceListDTO;
 import es.incidence.ms.domain.embebbed.Location;
 import es.incidence.ms.domain.entities.incidences.Incidence;
 import es.incidence.ms.domain.entities.organizations.impl.Organization;
@@ -23,8 +25,6 @@ import es.incidence.ms.repository.IncidenceRepository;
 import es.incidence.ms.repository.OrganizationRepository;
 import es.incidence.ms.service.IIncidenceService;
 import es.incidence.ms.utils.ActionResponse;
-import es.incidence.ms.utils.dtos.IncidenceListDto;
-import es.incidence.ms.utils.filters.impl.IncidenceFilter;
 
 
 @Service
@@ -44,10 +44,6 @@ public class IncidenceService implements IIncidenceService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
-	//@Autowired
-	//private QueryResolvedService queryResolvedService;
-	
-
 	@Override
 	public ActionResponse getIncidence(Incidence incidence) {
 		// TODO Auto-generated method stub
@@ -143,15 +139,15 @@ public class IncidenceService implements IIncidenceService {
 	}
 
 	@Override
-	public ActionResponse getIncidences(final Long citizenId, final Long organizationId, final IncidenceFilter incidenceFilter, Pageable page) {
+	public ActionResponse getIncidences(final Long citizenId, final Long organizationId, final IncidenceFilterDTO incidenceFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
-		logger.info("Method: IncidenceService.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );
+		logger.info("Method: IncidenceService.getIncidences(incidenceFilter={})", (incidenceFilterDTO !=null ? incidenceFilterDTO.toString() : null ) );
 		
 		ActionResponse actionResponse = null;
 		
 		try {
 		
-			Page<IncidenceListDto> incidencesPage = incidenceRepository.getIncidencesByFilter(citizenId, organizationId, incidenceFilter, page);
+			Page<IncidenceListDTO> incidencesPage = incidenceRepository.getIncidencesByFilter(citizenId, organizationId, incidenceFilterDTO, page);
 			
 			if( incidencesPage == null ) {
 				

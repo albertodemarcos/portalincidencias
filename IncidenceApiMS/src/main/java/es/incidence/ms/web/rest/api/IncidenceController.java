@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.incidence.ms.domain.dtos.IncidenceDTO;
+import es.incidence.ms.domain.dtos.IncidenceFilterDTO;
 import es.incidence.ms.domain.entities.incidences.Incidence;
 import es.incidence.ms.service.impl.IncidenceService;
 import es.incidence.ms.utils.ActionResponse;
-import es.incidence.ms.utils.filters.impl.IncidenceFilter;
 import es.incidence.ms.validators.IncidenceValidator;
 
 
@@ -68,10 +68,10 @@ public class IncidenceController {
 	}
 	
 	@GetMapping(path = {"/incidences"})
-	public ActionResponse getIncidences(@RequestBody(required = true) final IncidenceFilter incidenceFilter, @ModelAttribute Pageable page)
+	public ActionResponse getIncidences(@RequestBody(required = true) final IncidenceFilterDTO incidenceFilterDTO, @ModelAttribute Pageable page)
 	{
-		logger.info("Method: IncidencesController.getIncidences(incidenceFilter={})", (incidenceFilter !=null ? incidenceFilter.toString() : null ) );
-		ActionResponse response = this.incidenceService.getIncidences(null, null, incidenceFilter, page);
+		logger.info("Method: IncidencesController.getIncidences(incidenceFilter={})", (incidenceFilterDTO !=null ? incidenceFilterDTO.toString() : null ) );
+		ActionResponse response = this.incidenceService.getIncidences(null, null, incidenceFilterDTO, page);
 		return response;
 	}
 }

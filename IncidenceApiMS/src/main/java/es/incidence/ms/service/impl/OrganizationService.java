@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import es.incidence.ms.domain.dtos.OrganizationDTO;
+import es.incidence.ms.domain.dtos.OrganizationFilterDTO;
 import es.incidence.ms.domain.dtos.OrganizationListDTO;
 import es.incidence.ms.domain.embebbed.Location;
 import es.incidence.ms.domain.entities.organizations.impl.Organization;
 import es.incidence.ms.repository.OrganizationRepository;
 import es.incidence.ms.service.IOrganizationService;
 import es.incidence.ms.utils.ActionResponse;
-import es.incidence.ms.utils.filters.impl.OrganizationFilter;
 
 @Service
 public class OrganizationService implements IOrganizationService {
@@ -114,15 +114,15 @@ public class OrganizationService implements IOrganizationService {
 	}
 
 	@Override
-	public ActionResponse getOrganizations(Long citizenId, Long organizationId, OrganizationFilter organizationFilter, Pageable page) {
+	public ActionResponse getOrganizations(Long citizenId, Long organizationId, OrganizationFilterDTO organizationFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
-		logger.info("Method: OrganizationService.getOrganizations(organizationFilter={})", (organizationFilter !=null ? organizationFilter.toString() : null ) );
+		logger.info("Method: OrganizationService.getOrganizations(organizationFilter={})", (organizationFilterDTO !=null ? organizationFilterDTO.toString() : null ) );
 		
 		Page<OrganizationListDTO> organizationsPage = null;
 		
 		try {
 		
-			organizationsPage = organizationRepository.getOrganizationsByFilter(organizationFilter, page);
+			organizationsPage = organizationRepository.getOrganizationsByFilter(organizationFilterDTO, page);
 			
 			if( organizationsPage == null ) {
 				

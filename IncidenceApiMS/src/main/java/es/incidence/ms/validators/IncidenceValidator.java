@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import es.incidence.ms.utils.dtos.IncidenceDto;
+import es.incidence.ms.domain.dtos.IncidenceDTO;
 import net.logstash.logback.util.StringUtils;
 
 @Component
@@ -13,14 +13,14 @@ public class IncidenceValidator implements Validator {
 	@Override
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
-		return IncidenceDto.class.isAssignableFrom(clazz);
+		return IncidenceDTO.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
 		
-		IncidenceDto incidenceDto = (IncidenceDto) target;
+		IncidenceDTO incidenceDto = (IncidenceDTO) target;
 		
 		if( incidenceDto == null ) 
 		{

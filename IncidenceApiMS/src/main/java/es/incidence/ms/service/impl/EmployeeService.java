@@ -72,7 +72,7 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
-	public ActionResponse deleteEmployee(Long employeeId, Long organizationId) {
+	public ActionResponse deleteEmployee(final Long employeeId, final Long organizationId) {
 		// TODO Auto-generated method stub
 		logger.info("Method: EmployeeService.deleteEmployee(employeeId={}, organizationId={})", employeeId, organizationId );
 		
@@ -108,7 +108,7 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
-	public ActionResponse getEmployees(Long employeeId, EmployeeFilterDTO employeeFilterDTO, Pageable page) {
+	public ActionResponse getEmployees(final Long organizationId, final EmployeeFilterDTO employeeFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
 		logger.info("Method: EmployeeService.getEmployees(employeeFilterDTO={})", (employeeFilterDTO !=null ? employeeFilterDTO.toString() : null ) );
 		
@@ -116,7 +116,7 @@ public class EmployeeService implements IEmployeeService {
 		
 		try {
 		
-			employeesPage = null;//employeeRepository.getOrganizationsByFilter(employeeFilterDTO, page);
+			employeesPage = employeeRepository.getEmployeesByFilter(null, employeeFilterDTO, page);
 			
 			if( employeesPage == null ) {
 				

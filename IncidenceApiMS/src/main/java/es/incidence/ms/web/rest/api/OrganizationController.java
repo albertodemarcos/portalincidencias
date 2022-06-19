@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.incidence.ms.domain.dtos.OrganizationDTO;
+import es.incidence.ms.domain.dtos.OrganizationFilterDTO;
 import es.incidence.ms.domain.entities.organizations.impl.Organization;
 import es.incidence.ms.service.impl.OrganizationService;
 import es.incidence.ms.utils.ActionResponse;
-import es.incidence.ms.utils.filters.impl.OrganizationFilter;
 import es.incidence.ms.validators.OrganizationValidator;
 
 
@@ -68,10 +68,10 @@ public class OrganizationController {
 	}
 	
 	@GetMapping(path = {"/organizations"})
-	public ActionResponse getOrganizations(@RequestBody(required = true) final OrganizationFilter organizationFilter, @ModelAttribute Pageable page)
+	public ActionResponse getOrganizations(@RequestBody(required = true) final OrganizationFilterDTO organizationFilterDTO, @ModelAttribute Pageable page)
 	{
-		logger.info("Method: OrganizationsController.getOrganizations(organizationFilter={})", (organizationFilter !=null ? organizationFilter.toString() : null ) );
-		ActionResponse response = this.organizationService.getOrganizations(null, null, organizationFilter, page);
+		logger.info("Method: OrganizationsController.getOrganizations(organizationFilter={})", (organizationFilterDTO !=null ? organizationFilterDTO.toString() : null ) );
+		ActionResponse response = this.organizationService.getOrganizations(null, null, organizationFilterDTO, page);
 		return response;
 	}
 }

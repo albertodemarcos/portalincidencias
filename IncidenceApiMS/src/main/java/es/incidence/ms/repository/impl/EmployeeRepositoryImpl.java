@@ -14,12 +14,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import es.incidence.ms.domain.dtos.IncidenceFilterDTO;
-import es.incidence.ms.domain.dtos.IncidenceListDTO;
-import es.incidence.ms.repository.IncidenceCustomRepository;
+import es.incidence.ms.domain.dtos.EmployeeFilterDTO;
+import es.incidence.ms.domain.dtos.EmployeeListDTO;
+import es.incidence.ms.repository.EmployeeCustomRepository;
 import es.incidence.ms.utils.querys.impl.QueryResolvedService;
 
-public class IncidenceRepositoryImpl implements IncidenceCustomRepository {
+public class EmployeeRepositoryImpl implements EmployeeCustomRepository {
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -29,38 +29,33 @@ public class IncidenceRepositoryImpl implements IncidenceCustomRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Page<IncidenceListDTO> getIncidencesByFilter(Long citizenId, Long organizationId, IncidenceFilterDTO incidenceFilterDTO, Pageable page) {
+	public Page<EmployeeListDTO> getEmployeesByFilter(final Long organizationId, final EmployeeFilterDTO employeeFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
+		String from = " from Employee e inner join e.organization o";
 		
-		
-		String from = " from Incidence i inner join i.citizen c inner left join i.employee e inner join i.organization o";
-		
-		String selectSqlQuery = " select new es.incidence.ms.utils.dtos.IncidenceListDto(i.id, i.title, i.description, i.startDate, i.endDate, i.longitude, i.latitude, o.id, c.id, e.id) "	+ from;
+		String selectSqlQuery = " select new es.incidence.ms.domain.dtos.EmployeeListDTO() " + from;
 		
 		String countSqlQuery = " select count(i.id) " + from;
 		
 		Map<String, Object> sqlParamsQuery = new HashMap<String, Object>(5);
 		
-		sqlParamsQuery.put("organizationId", organizationId);
-		sqlParamsQuery.put("citizenId", citizenId);
-		
 		long numRegister = queryResolvedService.countJpqlConsulterWithConditionExpression(em.createQuery(countSqlQuery), sqlParamsQuery);
 		
-		Page<IncidenceListDTO> incidencesDto = null;
+		Page<EmployeeListDTO> employeeListDTO = null;
 		
 		if( numRegister > 0 ) 
 		{
 			Query query = queryResolvedService.getJpqlConsuslterWithSqlStr(selectSqlQuery, page, em, sqlParamsQuery);
 			
-			incidencesDto = new PageImpl<IncidenceListDTO>(query.getResultList(), page, numRegister);
+			employeeListDTO = new PageImpl<EmployeeListDTO>(query.getResultList(), page, numRegister);
 		} 
 		else 
 		{
-			List<IncidenceListDTO> resultList = new ArrayList<IncidenceListDTO>(0);
-			incidencesDto = new PageImpl<IncidenceListDTO>(resultList, page, 0);
+			List<EmployeeListDTO> resultList = new ArrayList<EmployeeListDTO>(0);
+			employeeListDTO = new PageImpl<EmployeeListDTO>(resultList, page, 0);
 		}
 		
-		return incidencesDto;
+		return employeeListDTO;
 	}
 
 }

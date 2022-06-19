@@ -14,9 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import es.incidence.ms.domain.dtos.OrganizationFilterDTO;
 import es.incidence.ms.domain.dtos.OrganizationListDTO;
 import es.incidence.ms.repository.OrganizationCustomRepository;
-import es.incidence.ms.utils.filters.impl.OrganizationFilter;
 import es.incidence.ms.utils.querys.impl.QueryResolvedService;
 
 public class OrganizationRepositoryImpl implements OrganizationCustomRepository {
@@ -29,7 +29,7 @@ public class OrganizationRepositoryImpl implements OrganizationCustomRepository 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Page<OrganizationListDTO> getOrganizationsByFilter(OrganizationFilter organizationFilter, Pageable page) {
+	public Page<OrganizationListDTO> getOrganizationsByFilter(OrganizationFilterDTO organizationFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
 		String from = " from Incidence i inner join i.citizen c inner left join i.employee e inner join i.organization o";
 		

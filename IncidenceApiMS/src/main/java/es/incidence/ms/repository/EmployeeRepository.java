@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.incidence.ms.domain.entities.users.impl.Employee;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long>, EmployeeCustomRepository {
 
 	Optional<Employee> findByIdAndOrganizationId(Long id, Long organizationId);
 }
