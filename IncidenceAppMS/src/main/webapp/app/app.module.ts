@@ -27,6 +27,9 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ListComponent } from './admin/organizations/list/list.component';
+import { DetailComponent } from './admin/organizations/detail/detail.component';
+import { DeleteComponent } from './admin/organizations/delete/delete.component';
 
 @NgModule({
   imports: [
@@ -49,7 +52,7 @@ import { FormsModule } from '@angular/forms';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, ListComponent, DetailComponent, DeleteComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {
