@@ -1,14 +1,15 @@
-<h5>Incidences</h5>
+<h5>Organizations</h5>
 
 <p-table 
-    [value]="incidences" 
+    [value]="organizations" 
     styleClass="p-datatable-gridlines" 
     responsiveLayout="scroll" 
     [paginator]="true" [rows]="10" 
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
     [rowsPerPageOptions]="[10,25,50]"
-    [globalFilterFields]="['name','type']">
+    [globalFilterFields]="['name','type']"
+    [lazy]="true" (onLazyLoad)="loadTable($event)" [loading]="loading">
     <ng-template pTemplate="header">
         <tr>
             <th>View</th>
@@ -26,9 +27,9 @@
             <th></th>
             <th>
                 <div class="flex justify-content-center align-items-center">
-                    <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
-                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                            <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                    <p-columnFilter field="type" [showMenu]="false" [matchMode]="'equals'">
+                        <ng-template pTemplate="filter" let-type let-filter="filterCallback">
+                            <p-dropdown [ngModel]="type" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
                                 <ng-template let-option pTemplate="item">
                                     <span>{{option.label}}</span>
                                 </ng-template>
@@ -42,7 +43,7 @@
     <ng-template pTemplate="body" let-organization>
         <tr>
             <td>
-                <button pButton pRipple type="button" icon="pi pi-user" (click)="viewIncidence(organization.id)" class="p-button-rounded"></button>
+                <button pButton pRipple type="button" icon="pi pi-user" (click)="viewOrganization(organization.id)" class="p-button-rounded"></button>
             </td>
             <td>{{organization.name}}</td>
             <td>{{organization.description}}</td>

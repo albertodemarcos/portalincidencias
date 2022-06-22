@@ -114,20 +114,22 @@ public class OrganizationService implements IOrganizationService {
 	}
 
 	@Override
-	public ActionResponse getOrganizations(Long citizenId, Long organizationId, OrganizationFilterDTO organizationFilterDTO, Pageable page) {
+	public ActionResponse postOrganizations(OrganizationFilterDTO organizationFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
 		logger.info("Method: OrganizationService.getOrganizations(organizationFilter={})", (organizationFilterDTO !=null ? organizationFilterDTO.toString() : null ) );
 		
 		Page<OrganizationListDTO> organizationsPage = null;
 		
 		try {
+			logger.info("organizationFilterDTO=> {}", organizationFilterDTO.toString() );
 		
 			organizationsPage = organizationRepository.getOrganizationsByFilter(organizationFilterDTO, page);
 			
-			if( organizationsPage == null ) {
+			/*if( organizationsPage == null ) {
 				
 				throw new Exception("There's not data");
-			}
+			}*/
+			
 			
 		} catch(Exception e) {
 			

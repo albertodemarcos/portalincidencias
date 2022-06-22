@@ -3,6 +3,7 @@ package es.incidenceapp.ms.service.app.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -80,7 +81,7 @@ public class OrganizationService implements IOrganizationService {
 	}
 
 	@Override
-	public ActionResponse getOrganizations(OrganizationFilterDTO organizationFilterDTO) {
+	public ActionResponse postOrganizations(OrganizationFilterDTO organizationFilterDTO, Pageable page) {
 		// TODO Auto-generated method stub
 		logger.info("Method: OrganizationService.createOrganization(organizationFilterDTO={})", organizationFilterDTO != null ? organizationFilterDTO.toString() : null );
 		

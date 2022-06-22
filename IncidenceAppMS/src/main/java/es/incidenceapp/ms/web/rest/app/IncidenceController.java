@@ -33,14 +33,6 @@ public class IncidenceController {
 		return response;
 	}
 	
-	@GetMapping(path = {"/incidence/{incidenceId}"})
-	public ActionResponse getEditIncidence(@PathVariable Long incidenceId) {
-		
-		logger.info("Method: IncidenceController.getEditIncidence(incidenceId={})", incidenceId != null ? incidenceId : null );
-		ActionResponse response = null;//this.incidenceService.getIncidence(incidence);
-		return response;
-	}
-
 	@PostMapping(path = {"/createIncidence"})
 	public ActionResponse postCreateIncidence(@RequestBody(required = true) IncidenceDTO incidenceDto, BindingResult result) {
 		
@@ -51,7 +43,7 @@ public class IncidenceController {
 		return response;
 	}
 	
-	@DeleteMapping(path = {"/incidence/{incidenceId}"})
+	@GetMapping(path = {"/incidence/delete/{incidenceId}"})
 	public ActionResponse getDeleteIncidence(@PathVariable Long incidenceId) {
 		
 		logger.info("Method: IncidenceController.deleteIncidenceById(incidenceId={})", incidenceId );

@@ -27,20 +27,20 @@ import {ChartModule} from 'primeng/chart';
 import {TagModule} from 'primeng/tag';
 import {GMapModule} from 'primeng/gmap';
 import { GoogleMapsModule } from '@angular/google-maps'
-
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
   imports: [ 
     PanelModule, CalendarModule, InputSwitchModule, InputTextareaModule, TableModule, SidebarModule, MenuModule, MegaMenuModule,
     TreeModule, ProgressSpinnerModule, ToastModule, DialogModule, CardModule, ContextMenuModule, ChartModule, TagModule,
-    TooltipModule, ColorPickerModule, GMapModule, GoogleMapsModule
+    TooltipModule, ColorPickerModule, GMapModule, GoogleMapsModule, DropdownModule
   ],
   exports: [
     FormsModule, CommonModule, NgbModule, InfiniteScrollModule, FontAwesomeModule, ReactiveFormsModule, TranslateModule,
     PanelModule, CalendarModule, InputSwitchModule, InputTextareaModule, TableModule, SidebarModule, MenuModule, MegaMenuModule,
     TreeModule, ProgressSpinnerModule, ToastModule, DialogModule, CardModule, ContextMenuModule, ChartModule, TagModule,
-    TooltipModule, ColorPickerModule, GMapModule, GoogleMapsModule
+    TooltipModule, ColorPickerModule, GMapModule, GoogleMapsModule, DropdownModule
   ],
 })
 export class SharedLibsModule {}

@@ -46,7 +46,8 @@ public class WebConfigurer implements ServletContextInitializer, WebMvcConfigure
     		"/v3/api-docs",
     		"/swagger-resources",
     		"/swagger-ui/**",
-    		"/incidenceApi/**"
+    		"/incidenceApi/**",
+    		"/organizationApi/**"
         };
 
     public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {

@@ -36,14 +36,6 @@ public class OrganizationController {
 		return response;
 	}
 	
-	@GetMapping(path = {"/organization/{organizationId}"})
-	public ActionResponse getEditOrganization(@PathVariable Long organizationId) {
-		
-		logger.info("Method: OrganizationController.getEditOrganization(organizationId={})", organizationId != null ? organizationId : null );
-		ActionResponse response = this.organizationService.getOrganization(organizationId);
-		return response;
-	}
-
 	@PostMapping(path = {"/createOrganization"})
 	public ActionResponse postCreateOrganization(@RequestBody(required = true) OrganizationDTO organizationDto, BindingResult result) {
 		
@@ -54,7 +46,7 @@ public class OrganizationController {
 		return response;
 	}
 	
-	@DeleteMapping(path = {"/organization/{organizationId}"})
+	@GetMapping(path = {"/organization/delete/{organizationId}"})
 	public ActionResponse getDeleteOrganization(@PathVariable Long organizationId) {
 		
 		logger.info("Method: OrganizationController.getDeleteOrganization(organizationId={})", organizationId != null ? organizationId : null );
@@ -62,11 +54,11 @@ public class OrganizationController {
 		return response;
 	}
 	
-	@GetMapping(path = {"/organizations"})
-	public ActionResponse getListOrganizations(@RequestBody(required = true) final OrganizationFilterDTO organizationFilterDTO, @ModelAttribute Pageable page) {
+	@PostMapping(path = {"/organizations/list"})
+	public ActionResponse postListOrganizations(@RequestBody(required = true) final OrganizationFilterDTO organizationFilterDTO, Pageable page) {
 		
 		logger.info("Method: OrganizationController.getListOrganizations(organizationFilterDTO={})", (organizationFilterDTO !=null ? organizationFilterDTO.toString() : null ) );
-		ActionResponse response = this.organizationService.getOrganizations(organizationFilterDTO);
+		ActionResponse response = new ActionResponse("1", "finalizamos");//this.organizationService.postOrganizations(organizationFilterDTO, page);
 		return response;
 	}
 	

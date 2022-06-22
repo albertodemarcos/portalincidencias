@@ -67,11 +67,11 @@ public class OrganizationController {
 		return response;
 	}
 	
-	@GetMapping(path = {"/organizations"})
+	@PostMapping(path = {"/organizations/list"})
 	public ActionResponse getOrganizations(@RequestBody(required = true) final OrganizationFilterDTO organizationFilterDTO, @ModelAttribute Pageable page)
 	{
 		logger.info("Method: OrganizationsController.getOrganizations(organizationFilter={})", (organizationFilterDTO !=null ? organizationFilterDTO.toString() : null ) );
-		ActionResponse response = this.organizationService.getOrganizations(null, null, organizationFilterDTO, page);
+		ActionResponse response = this.organizationService.postOrganizations(organizationFilterDTO, page);
 		return response;
 	}
 }

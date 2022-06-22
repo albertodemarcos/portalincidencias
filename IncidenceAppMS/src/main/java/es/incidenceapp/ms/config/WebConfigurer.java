@@ -5,6 +5,8 @@ import static java.net.URLDecoder.decode;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.util.List;
+
 import javax.servlet.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +17,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import tech.jhipster.config.JHipsterConstants;
 import tech.jhipster.config.JHipsterProperties;
 
@@ -26,9 +34,10 @@ import tech.jhipster.config.JHipsterProperties;
  * Configuration of web application with Servlet 3.0 APIs.
  */
 @Configuration
-public class WebConfigurer implements ServletContextInitializer, WebServerFactoryCustomizer<WebServerFactory> {
+@EnableSpringDataWebSupport
+public class WebConfigurer implements ServletContextInitializer, WebServerFactoryCustomizer<WebServerFactory>, WebMvcConfigurer {
 
-    private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
+	private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
 
     private final Environment env;
 
@@ -40,9 +49,17 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
 		"/v2/api-docs",
 		"/v3/api-docs",
 		"/swagger-resources",
-		"/swagger-ui/**",
-		"/planningApi/**"
+		"/swagger-ui/**",		
+		"/incidencesAppApi/**",
+		"/organizationsAppApi/**",
+		"/employeesAppApi/**"	
     };
+    
+    @Bean
+	public RestTemplate template() {
+		RestTemplate template = new RestTemplate();
+		return template;
+	} 
 
     public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
         this.env = env;
@@ -104,13 +121,18 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
             	 log.debug("Registering ALLOWED URIS: uri={}", uri);
             	source.registerCorsConfiguration(uri, config);
             }
-           /* 
-            source.registerCorsConfiguration("/api/**", config);            
-            source.registerCorsConfiguration("/management/**", config);
-            source.registerCorsConfiguration("/v3/api-docs", config);
-            source.registerCorsConfiguration("/swagger-ui/**", config);
-            */
         }
         return new CorsFilter(source);
     }
+    
+    @Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+		// TODO Auto-generated method stub
+    	resolvers.add( new PageableHandlerMethodArgumentResolver());
+	}
+    
+    /*@Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add( new PageableHandlerMethodArgumentResolver());
+    }*/
 }

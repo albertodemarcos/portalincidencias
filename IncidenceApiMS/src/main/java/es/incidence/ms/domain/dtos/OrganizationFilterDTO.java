@@ -60,5 +60,11 @@ public class OrganizationFilterDTO implements Serializable, IFilter {
 	public void setTipo(OrganizationType tipo) {
 		this.tipo = tipo;
 	}
+	
+	@Override
+	public String toString() {
+		return "OrganizationFilterDTO [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", tipo="
+				+ tipo + "]";
+	}
 
 }

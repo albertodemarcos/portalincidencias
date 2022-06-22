@@ -4,8 +4,7 @@ import { ModalService } from 'app/core/util/modal.service';
 
 @Component({
   selector: 'jhi-city-map',
-  templateUrl: './city-map.component.html',
-  styleUrls: ['./city-map.component.scss']
+  templateUrl: './city-map.component.html'
 })
 export class CityMapComponent implements OnInit {
 
@@ -36,13 +35,21 @@ export class CityMapComponent implements OnInit {
     this.modalService.open('/incidences/view', modalParams, true);
   }
 
-  addIncidence(): void {}
+  addIncidence(): void {
+    console.log("Component[CityMapComponent]=>ngOnInit()");
+  }
   
-  editIncidence(): void {}
+  editIncidence(): void {
+    console.log("Component[CityMapComponent]=>ngOnInit()");
+  }
 
-  deleteIncidence(): void {}
+  deleteIncidence(): void {
+    console.log("Component[CityMapComponent]=>ngOnInit()");
+  }
 
-  viewIncidence(): void {}
+  viewIncidence(): void {
+    console.log("Component[CityMapComponent]=>ngOnInit()");
+  }
 
 
 

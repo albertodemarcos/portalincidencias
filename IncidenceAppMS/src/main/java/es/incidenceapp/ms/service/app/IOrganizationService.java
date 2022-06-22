@@ -1,5 +1,6 @@
 package es.incidenceapp.ms.service.app;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 
 import es.incidenceapp.ms.domain.dtos.ActionResponse;
@@ -15,6 +16,6 @@ public interface IOrganizationService {
 
 	ActionResponse deleteOrganizationId(final Long organizationDTOId);
 	
-	ActionResponse getOrganizations(final OrganizationFilterDTO organizationFilterDTO);
+	ActionResponse postOrganizations(final OrganizationFilterDTO organizationFilterDTO, Pageable page);
 	
 }
